@@ -364,23 +364,6 @@
       min-height:clamp(320px, 40vw, 420px);
       text-align:center;
     }
-        
-    @media (max-width: 520px){
-      .groupPick{
-        display:grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap:10px;
-        width:min(360px, 92%);
-        margin:0 auto;
-      }
-
-      .groupBtn{
-        width:100%;
-        padding:12px 0;
-        text-align:center;
-        border-radius:14px;
-      }
-    }
   </style>
 </head>
 
@@ -396,16 +379,9 @@
         <div class="bigText">게임 설명</div>
 
         <div class="smallText">
-          시간 제한 10초 동안 1초 듣고 노래를 맞추면 됩니다<br />
-          생명은 3개이며, 다시 듣기는 곡 당 1회입니다<br />
-          다시 듣기는 시간 제한 안에 사용해야 적용됩니다<br />
-          범위를 선택한 뒤 게임 시작을 누르세요<br />
-        </div>
-
-        <div class="bigText">입력 가이드</div>
-        <div class="smallText">
-          대소문자, 띄어쓰기 상관없습니다<br />
-          영어 제목을 한글로 적어도 됩니다 (ex. LOL -> 롤)
+          1초 듣기, 생명 3개, 다시듣기 1회, 시간 제한 10초<br />
+          다시 듣기는 시간 제한 안에 사용해야 적용<br />
+          범위를 선택한 뒤 게임 시작을 누르세요
         </div>
 
         <div class="bigText">닉네임 입력</div>
@@ -432,7 +408,7 @@
       </div>
 
       <div class="panel main">
-        <div class="row">1초부터 1초간 들려드립니다</div>
+        <div class="row">0초부터 1초간 들려드립니다</div>
 
         <div class="livesRow" id="livesRow" aria-label="lives"></div>
 
@@ -492,8 +468,8 @@
     const BLOCK_TTL_1 = 7 * 24 * 60 * 60 * 1000
     const BLOCK_TTL_2 = 30 * 24 * 60 * 60 * 1000
 
-    const FIXED_START_SEC = 1
-    const FIXED_DUR_SEC = 1
+    const FIXED_START_SEC = 0
+    const FIXED_DUR_SEC = 1.5
     const ANSWER_LIMIT_SEC = 10
 
     const GROUPS = {
@@ -1409,6 +1385,3 @@
   </script>
 </body>
 </html>
-
-
-
