@@ -480,6 +480,7 @@
       </div>
       <div class="panel gameOverBox">
         <div id="gameOverText" class="bigText"></div>
+        <div id="rankBox" class="smallText"></div>
         <button id="restartBtn" class="startBtn">처음으로</button>
       </div>
     </div>
@@ -507,6 +508,7 @@
       startScreen: document.getElementById("startScreen"),
       gameScreen: document.getElementById("gameScreen"),
       gameOverScreen: document.getElementById("gameOverScreen"),
+      rankBox: document.getElementById("rankBox"),
 
       nickname: document.getElementById("nickname"),
       startBtn: document.getElementById("startBtn"),
@@ -877,12 +879,19 @@
       }
     }
 
-    function gameOver(){
+    async function gameOver(){
       hardStopMute()
       const text = nickname + "님의 점수는 " + String(correctCount) + "/" + String(totalCount) + "입니다"
       el.gameOverText.textContent = text
       showScreen(el.gameOverScreen)
+
+      el.rankBox.textContent = "랭킹 불러오는 중"
+
+      await submitScore()
+      const rankingText = await loadRanking()
+      el.rankBox.textContent = rankingText || "랭킹 로딩 실패"
     }
+
 
     async function waitForPlayingOrError(token, timeoutMs){
       const started = Date.now()
@@ -1307,6 +1316,41 @@
 
       showScreen(el.startScreen)
       setMsg("", "info")
+    }
+
+    async function submitScore(){
+      try{
+        await fetch("/api/score", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            nickname,
+            correct: correctCount,
+            total: totalCount
+          })
+        })
+      } catch {}
+    }
+
+    async function loadRanking(){
+      try{
+        const res = await fetch("/api/ranking?limit=20")
+        const json = await res.json()
+        if(!json || !json.ok) return ""
+
+        const lines = []
+        lines.push("TOP 20")
+        for(const r of json.data){
+          lines.push(
+            String(r.rank) + "위  " + r.nickname +
+            "  " + String(r.score) + "점" +
+            "  (" + String(r.correct) + "/" + String(r.total) + ")"
+          )
+        }
+        return lines.join("\n")
+      } catch {
+        return ""
+      }
     }
 
     function onYouTubeIframeAPIReady(){
