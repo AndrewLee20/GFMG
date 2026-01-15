@@ -22,6 +22,7 @@
       --title:clamp(18px, 2.8vw, 30px);
       --text:clamp(13px, 1.55vw, 16px);
       --big:clamp(16px, 2.2vw, 22px);
+      --small:clamp(12px, 1.4vw, 14px);
     }
 
     html, body { height:100%; }
@@ -46,6 +47,13 @@
       border:3px solid var(--line);
       border-radius:var(--radius);
       padding:var(--pad);
+    }
+
+    /* 아래 2개 박스도 위 박스와 같은 카드색 강제 적용 */
+    .panel.now,
+    .panel.homeMid,
+    .panel.hint{
+      background:var(--card) !important;
     }
 
     .header{
@@ -148,14 +156,14 @@
     .descTitle{
       font-size:var(--title);
       font-weight:900;
-      margin-bottom:10px;  
+      margin-bottom:10px;
     }
 
     .descText{
       font-size:var(--text);
       font-weight:800;
-      line-height:1.55;    
-      margin-bottom:18px; 
+      line-height:1.55;
+      margin-bottom:18px;
     }
 
     .homeFooterText{
@@ -168,7 +176,6 @@
       color:#fff;
       text-shadow:0 2px 0 rgba(0,0,0,0.25);
     }
-
   </style>
 </head>
 
@@ -184,7 +191,8 @@
 
     <div class="panel homeMid">
       <div class="homeTitle">💓여자친구 데뷔 11주년 축하해🎉🎉</div>
-      <div class="homeSub">소원🤍예린🤍은하💙유주💙신비💜엄지💜<br/>
+      <div class="homeSub">
+        소원🤍예린🤍은하💙유주💙신비💜엄지💜<br/>
         Love u always🤍💙💜
       </div>
     </div>
@@ -202,8 +210,8 @@
       <div class="panel card">
         <div class="cardTitle">챌린지 모드</div>
         <div class="cardDesc">
-          랭킹전<br />
-          제한 시간 6초, 생명 3개
+          하드 모드<br />
+          제한 시간 10초, 생명 3개
         </div>
         <button class="btn" id="goChallenge">시작</button>
       </div>
@@ -219,9 +227,11 @@
 
     <div class="panel hint">
       <div class="descTitle">게임 설명</div>
-      <div class="descText">여자친구 멤버들의 노래를 듣고 곡 제목을 맞히는 음악 퀴즈입니다</div>
+      <div class="descText">여자친구와 멤버들의 노래를 듣고 곡 제목을 맞히는 음악 퀴즈입니다</div>
+
       <div class="descTitle">저작권 안내</div>
-      <div class="descText">유튜브를 통해 노래가 재생되며 음원과 영상의 저작권은 각 저작권자에게 있습니다<br/>
+      <div class="descText">
+        유튜브를 통해 노래가 재생되며 음원과 영상의 저작권은 각 저작권자에게 있습니다<br/>
         본 게임은 비영리 목적이며 수익을 창출하지 않습니다<br/>
         문제가 될 경우 요청에 따라 즉시 조치하겠습니다
       </div>
@@ -229,7 +239,8 @@
 
     <div class="panel hint">
       <div class="descTitle">게임 내 수록곡</div>
-      <div class="descText">여자친구 : 미니 1집 Season of Glass ~ 스페셜 앨범 Season of Memories<br/>
+      <div class="descText">
+        여자친구 : 미니 1집 Season of Glass ~ 스페셜 앨범 Season of Memories<br/>
         예린 : 미니 1집 ARIA ~ 디지털 싱글 1집 Awake<br/>
         유주 : 디지털 싱글 LOVE RAIN ~ 미니 3집 In Bloom<br/>
         비비지 : 미니 1집 Beam Of Prism ~ 정규 1집 A Montage of ( )
@@ -244,7 +255,6 @@
   </div>
 
   <script>
-
     document.getElementById("goPractice").addEventListener("click", () => {
       location.href = "./CareerMode.html"
     })
@@ -259,4 +269,3 @@
   </script>
 </body>
 </html>
-
