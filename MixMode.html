@@ -8,7 +8,7 @@
   <style>
     :root{
       --bg:#00ABC0;
-      --line:#111;
+      --line:#111; 
       --card:#F0EEE9;
 
       --accent:#5F4B8B;
@@ -301,7 +301,8 @@
       font-weight:900;
       cursor:pointer;
       font-size:var(--small);
-    }
+    }  
+
 
     .mvBtn.off{
       background:#e6e6e6;
@@ -393,72 +394,26 @@
       height:100%;
     }
 
-    /* ===== 모바일 오디오 게이트 (해결 B) ===== */
-    .audioGate{
-      position:fixed;
-      inset:0;
-      display:none;
-      place-items:center;
-      background:rgba(0,0,0,0.55);
-      z-index:9999;
-      padding:16px;
-    }
-    .audioGate.on{ display:grid; }
+    @media (max-width: 520px){
+      .groupPick{
+        display:grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap:10px;
+        width:min(360px, 92%);
+        margin:0 auto;
+      }
 
-    .audioGateCard{
-      width:min(520px, 92%);
-      background:var(--card);
-      border:3px solid var(--line);
-      border-radius:18px;
-      padding:18px;
-      text-align:center;
-      display:grid;
-      gap:12px;
-    }
-
-    .audioGateTitle{
-      font-size:clamp(18px, 2.3vw, 24px);
-      font-weight:900;
-    }
-
-    .audioGateText{
-      font-size:var(--text);
-      font-weight:900;
-      line-height:1.45;
-    }
-
-    .audioGateBtn{
-      height:clamp(52px, 6.8vw, 62px);
-      border:3px solid var(--line);
-      border-radius:16px;
-      background:var(--accent);
-      color:var(--accentText);
-      font-weight:900;
-      font-size:clamp(16px, 2vw, 18px);
-      cursor:pointer;
-    }
-
-    .audioGateBtn:disabled{
-      opacity:0.45;
-      cursor:not-allowed;
+      .groupBtn{
+        width:100%;
+        padding:12px 0;
+        text-align:center;
+        border-radius:14px;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- 모바일 오디오 게이트 -->
-  <div id="audioGate" class="audioGate">
-    <div class="audioGateCard">
-      <div class="audioGateTitle">모바일 재생 준비</div>
-      <div class="audioGateText">
-        모바일에서는 소리 재생을 위해<br/>
-        재생 시작 버튼을 한번 눌러야 합니다
-      </div>
-      <button id="audioGateBtn" class="audioGateBtn" disabled>플레이어 준비 중</button>
-    </div>
-  </div>
-
   <div class="wrap">
 
     <!-- START SCREEN -->
@@ -470,8 +425,15 @@
       <div class="panel startBox">
         <div class="bigText">게임 설명</div>
         <div class="smallText">
-          3개의 노래의 제목을 맞추면 됩니다<br />
-          범위를 선택한 뒤 게임 시작을 누르세요
+          동시에 재생되는 노래 3개의 제목을 맞추면 됩니다<br />
+          범위를 선택한 뒤 게임 시작을 누르세요<br />
+          Youtube iframe 정책에 따라 PC에서만 플레이할 수 있습니다 (모바일 환경 불가)
+        </div>
+
+        <div class="bigText">입력 가이드</div>
+        <div class="smallText">
+          대소문자, 띄어쓰기 상관없습니다<br />
+          영어 제목을 한글로 적어도 됩니다 (ex. LOL -> 롤)
         </div>
 
         <div class="bigText">범위를 선택하세요</div>
@@ -625,25 +587,6 @@
       ytTitle0: document.getElementById("ytTitle0"),
       ytTitle1: document.getElementById("ytTitle1"),
       ytTitle2: document.getElementById("ytTitle2"),
-
-      audioGate: document.getElementById("audioGate"),
-      audioGateBtn: document.getElementById("audioGateBtn"),
-    }
-
-    function isMobile(){
-      return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent || "")
-    }
-
-    let audioUnlocked = false
-
-    function openAudioGate(){
-      if(!el.audioGate) return
-      el.audioGate.className = "audioGate on"
-    }
-
-    function closeAudioGate(){
-      if(!el.audioGate) return
-      el.audioGate.className = "audioGate"
     }
 
     function showScreen(which){
@@ -923,7 +866,6 @@
     async function playFull(token){
       const baseVol = 35
 
-      // 클릭 이벤트 스택 안에서 playVideo가 실행되도록
       for(let i=0;i<3;i++){
         lastErrorCodes[i] = null
         const p = players[i]
@@ -958,13 +900,6 @@
       }
       if(songs.length < 3){
         setMsg("곡 데이터가 3개 이상 필요", "bad")
-        return
-      }
-
-      // ===== 해결 B 핵심: 모바일이면 반드시 게이트 클릭을 선행 =====
-      if(isMobile() && !audioUnlocked){
-        openAudioGate()
-        setMsg("모바일은 재생 시작 버튼을 눌러야 합니다", "bad")
         return
       }
 
@@ -1170,18 +1105,8 @@
       renderMvBtn()
       showScreen(el.gameScreen)
 
-      if(isMobile()){
-        openAudioGate()
-        setMsg("모바일은 재생 시작 버튼을 눌러야 합니다", "info")
-      } else {
-        audioUnlocked = true
-        closeAudioGate()
-      }
-
       if(ready){
-        if(!isMobile()){
-          await startNextSet()
-        }
+        await startNextSet()
       } else {
         setMsg("플레이어 초기화 중", "bad")
       }
@@ -1206,11 +1131,6 @@
               if(readyCount >= 3){
                 ready = true
                 applyMvVisibilityPerSong()
-
-                if(el.audioGateBtn){
-                  el.audioGateBtn.disabled = false
-                  el.audioGateBtn.textContent = "재생 시작"
-                }
               }
             },
             onError: (e) => {
@@ -1229,17 +1149,6 @@
       showScreen(el.startScreen)
       renderMvBtn()
       applyMvVisibilityPerSong()
-
-      // 오디오 게이트 버튼 클릭 (사용자 제스처로 시작)
-      if(el.audioGateBtn){
-        el.audioGateBtn.addEventListener("click", () => {
-          audioUnlocked = true
-          closeAudioGate()
-
-          setMsg("재생 시작", "ok")
-          startNextSet()
-        })
-      }
 
       const groupPick = document.getElementById("groupPick")
       if(groupPick){
@@ -1295,3 +1204,6 @@
   </script>
 </body>
 </html>
+
+
+
