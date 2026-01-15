@@ -417,7 +417,7 @@
 
       <div class="panel main">
         <div class="row">
-          <input id="startSec" class="num" type="number" min="0" value="1" />
+          <input id="startSec" class="num" type="number" min="0" value="0" />
           <span class="hint">초부터</span>
           <input id="durSec" class="num" type="number" min="1" value="1" />
           <span class="hint">초간 들려드립니다</span>
@@ -654,6 +654,7 @@
     let roundEnded = false
 
     let player = null
+    let autoStartPending = false
     let ready = false
     let lastErrorCode = null
 
@@ -898,7 +899,7 @@
         return
       }
 
-      const start = clampInt(el.startSec.value, 0, 3600, 1)
+      const start = clampInt(el.startSec.value, 0, 3600, 0)
       const dur = clampInt(el.durSec.value, 1, 20, 1)
       el.startSec.value = String(start)
       el.durSec.value = String(dur)
@@ -965,7 +966,7 @@
       const token = nextToken()
       stopTimers()
 
-      const start = clampInt(el.startSec.value, 0, 3600, 1)
+      const start = clampInt(el.startSec.value, 0, 3600, 0)
       const dur = clampInt(el.durSec.value, 1, 20, 1)
 
       revealed = false
@@ -1201,8 +1202,8 @@
       showScreen(el.gameScreen)
 
       if(ready){
-        el.nextBtn.disabled = false
-        setMsg("다음 버튼을 누르면 3초 후 시작", "info")
+        setMsg("3초 후 시작", "info")
+        startNextFlow()
       } else {
         setMsg("플레이어 초기화 중", "bad")
       }
@@ -1228,8 +1229,14 @@
             } catch {}
 
             if(el.gameScreen.classList.contains("on") && songs.length > 0){
-              el.nextBtn.disabled = false
-              setMsg("다음 버튼을 누르면 3초 후 시작", "info")
+              if(autoStartPending){
+                autoStartPending = false
+                setMsg("3초 후 시작", "info")
+                startNextFlow()
+              } else {
+                el.nextBtn.disabled = false
+                setMsg("다음 버튼을 누르면 3초 후 시작", "info")
+              }
             }
           },
           onError: (e) => {
@@ -1288,7 +1295,3 @@
   </script>
 </body>
 </html>
-
-
-
-
