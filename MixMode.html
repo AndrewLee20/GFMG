@@ -393,6 +393,23 @@
       width:100%;
       height:100%;
     }
+
+    @media (max-width: 520px){
+      .groupPick{
+        display:grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap:10px;
+        width:min(360px, 92%);
+        margin:0 auto;
+      }
+
+      .groupBtn{
+        width:100%;
+        padding:12px 0;
+        text-align:center;
+        border-radius:14px;
+      }
+    }
   </style>
 </head>
 
@@ -409,7 +426,9 @@
         <div class="bigText">게임 설명</div>
         <div class="smallText">
           3개의 노래의 제목을 맞추면 됩니다<br />
-          범위를 선택한 뒤 게임 시작을 누르세요
+          범위를 선택한 뒤 게임 시작을 누르세요<br />
+          대소문자, 띄어쓰기 상관없습니다<br />
+          영어 제목을 한글로 적어도 됩니다 (ex. LOL -> 롤)
         </div>
 
         <div class="bigText">범위를 선택하세요</div>
@@ -1180,4 +1199,5 @@
   </script>
 </body>
 </html>
+
 
