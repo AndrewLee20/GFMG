@@ -1,0 +1,456 @@
+{
+  "group": "GFRIEND",
+  "version": 1,
+  "songs": [
+    {
+      "title": "유리구슬 (Glass Bead)",
+      "answers": ["유리구슬"],
+      "videoId": "u6w1mB2xIs4"
+    },
+    {
+      "title": "Neverland",
+      "answers": ["Neverland", "네버랜드"],
+      "videoId": "NbDwWBdE4GE"
+    },
+    {
+      "title": "White (하얀마음)",
+      "answers": ["White", "화이트"],
+      "videoId": "J3VtpXrRDqc"
+    },
+    {
+      "title": "오늘부터 우리는 (Me gustas tu)",
+      "answers": ["오늘부터 우리는", "오늘부터우리는"],
+      "videoId": "xJtqXz521mM"
+    },
+    {
+      "title": "하늘 아래서",
+      "answers": ["하늘 아래서", "하늘아래서"],
+      "videoId": "breVcXoK3EY"
+    },
+    {
+      "title": "One",
+      "answers": ["One", "원"],
+      "videoId": "Gyp6BuErDBM"
+    },
+    {
+      "title": "기억해 (My Buddy)",
+      "answers": ["기억해"],
+      "videoId": "R0eXnoUJ04o"
+    },
+    {
+      "title": "시간을 달려서 (Rough)",
+      "answers": ["시간을달려서", "시간을달려서"],
+      "videoId": "YXCkpXY1cuc"
+    },
+    {
+      "title": "내 이름을 불러줘 (Say My Name)",
+      "answers": ["내 이름을 불러줘", "내이름을불러줘"],
+      "videoId": "B00xPgeOjwQ"
+    },
+    {
+      "title": "사랑별 (Luv Star)",
+      "answers": ["사랑별"],
+      "videoId": "oEaVjX0HApM"
+    },
+    {
+      "title": "그런 날엔 (Someday)",
+      "answers": ["그런 날엔", "그런날엔"],
+      "videoId": "BQitFgrYQZo"
+    },
+    {
+      "title": "TRUST",
+      "answers": ["TRUST", "트러스트"],
+      "videoId": "2gnKTbLgOCA"
+    },
+    {
+      "title": "물들어요 (Fall in Love)",
+      "answers": ["물들어요"],
+      "videoId": "Zp8DVqaO06A"
+    },
+    {
+      "title": "너 그리고 나 (NAVILLERA)",
+      "answers": ["너 그리고 나", "너그리고나"],
+      "videoId": "fG_pZOn-rKg"
+    },
+    {
+      "title": "LOL",
+      "answers": ["LOL", "롤"],
+      "videoId": "tgobpk80jNo"
+    },
+    {
+      "title": "한 뼘 (Distance)",
+      "answers": ["한 뼘", "한뼘"],
+      "videoId": "7RvjWzKHwcU"
+    },
+    {
+      "title": "물꽃놀이 (Water Flower)",
+      "answers": ["물꽃놀이"],
+      "videoId": "eqs_yPoWpaM"
+    },
+    {
+      "title": "Mermaid",
+      "answers": ["Mermaid", "머메이드"],
+      "videoId": "0fZs5ry89aU"
+    },
+    {
+      "title": "나의 일기장 (Sunshine)",
+      "answers": ["나의 일기장", "나의 일기장", "나의일기장"],
+      "videoId": "f_Nmm_DFu-Q"
+    },
+    {
+      "title": "나침반 (Compas)",
+      "answers": ["나침반"],
+      "videoId": "0N3iR72BdaA"
+    },
+    {
+      "title": "찰칵 (Click)",
+      "answers": ["찰칵"],
+      "videoId": "6MSXRyDdpf0"
+    },
+    {
+      "title": "바람에 날려 (Gone with the wind)",
+      "answers": ["바람에 날려", "바람에날려"],
+      "videoId": "-NOnDyCvcXA"
+    },
+    {
+      "title": "바람의 노래 (Hear The Wind Sing)",
+      "answers": ["바람의 노래", "바람의노래"],
+      "videoId": "F3LBWZxaRDM"
+    },
+    {
+      "title": "FINGERTIP",
+      "answers": ["FINGERTIP", "핑거팁"],
+      "videoId": "Z8yv9fwXXbY"
+    },
+    {
+      "title": "비행운:飛行雲 (Contrail)",
+      "answers": ["비행운"],
+      "videoId": "AvKcwUGjLKM"
+    },
+    {
+      "title": "나의 지구를 지켜줘 (Please Save My Earth)",
+      "answers": ["나의 지구를 지켜줘", "나의지구를지켜줘"],
+      "videoId": "xAAwB3msPco"
+    },
+    {
+      "title": "봄비 (Rain In The Spring Time)",
+      "answers": ["봄비"],
+      "videoId": "nB8b2UvL2PM"
+    },
+    {
+      "title": "핑 (Crush)",
+      "answers": ["핑"],
+      "videoId": "Z1O9aCf4k_0"
+    },
+    {
+      "title": "귀를 기울이면 (LOVE WHISPER)",
+      "answers": ["귀를 기울이면", "귀를기울이면"],
+      "videoId": "8JiO3PVdsb0"
+    },
+    {
+      "title": "두 손을 모아 (AVE MARIA)",
+      "answers": ["두 손을 모아", "두손을모아"],
+      "videoId": "NOktPHLCjng"
+    },
+    {
+      "title": "이분의 일 1/2 (ONE-HALF)",
+      "answers": ["이분의 일", "이분의일"],
+      "videoId": "s8ujFYSaSCA"
+    },
+    {
+      "title": "LIFE IS A PARTY",
+      "answers": ["LIFE IS A PARTY", "LIFEISAPARTY", "라이프 이즈 어 파티", "라이프이즈어파티"],   
+      "videoId": "JwH5YUyLrjM"
+    },
+    {
+      "title": "빨간 우산 (RED UMBRELLA)",
+      "answers": ["빨간 우산", "빨간우산"],
+      "videoId": "yApy5Ftm2iM"
+    },
+    {
+      "title": "그루잠 (FALLING ASLEEP AGAIN)",
+      "answers": ["그루잠"],
+      "videoId": "YOtDgTMtqTI"
+    },
+    {
+      "title": "여름비 (SUMMER RAIN)",
+      "answers": ["여름비"],
+      "videoId": "M8nV9c662hs"
+    },
+    {
+      "title": "RAINBOW",
+      "answers": ["RAINBOW", "레인보우"],
+      "videoId": "weeXxM72sdo"
+    },
+    {
+      "title": "밤 (Time for the moon night)",
+      "answers": ["밤"],
+      "videoId": "QcvGFJKjpno"
+    },
+    {
+      "title": "Love Bug",
+      "answers": ["Love Bug", "LoveBug", "러브 버그", "러브버그"],
+      "videoId": "wUQEmNft1iQ"
+    },
+    {
+      "title": "휘리휘리 (Flower Garden)",
+      "answers": ["휘리휘리"],
+      "videoId": "Az_OX3aD4Bc"
+    },
+    {
+      "title": "틱틱 (Tik Tik)",
+      "answers": ["틱틱"],
+      "videoId": "GoiB4-mVhZU"
+    },
+    {
+      "title": "Bye",
+      "answers": ["Bye", "바이"],
+      "videoId": "DzBpYkzAcEo"
+    },
+    {
+      "title": "별 (You are my star)",
+      "answers": ["별"],
+      "videoId": "6XWj9goZARY"
+    },
+    {
+      "title": "여름여름해 (Sunny Summer)",
+      "answers": ["여름여름해"],
+      "videoId": "1CZYtWN7QfY"
+    },
+    {
+      "title": "Vacation",
+      "answers": ["Vacation", "배케이션"],
+      "videoId": "qCDmhZFarO8"
+    },
+    {
+      "title": "Sweety",
+      "answers": ["Sweety", "스위티"],
+      "videoId": "f6jxL8ystkU"
+    },
+    {
+      "title": "바람 바람 바람 (Windy Windy)",
+      "answers": ["바람 바람 바람", "바람바람바람"],
+      "videoId": "nQ9AhtHM3dk"
+    },
+    {
+      "title": "Love In The Air",
+      "answers": ["Love In The Air", "LoveInTheAir", "러브 인 디 에어", "럽 인 디 에어", "러브인디에어", "럽인디에어"],
+      "videoId": "oi6MC0fYYc0"
+    },
+    {
+      "title": "해야 (Sunrise)",
+      "answers": ["해야"],
+      "videoId": "nSf1VYnG7UQ"
+    },
+    {
+      "title": "You are not alone",
+      "answers": ["You are not alone", "Youarenotalone", "유 알 낫 얼론", "유 아 낫 얼론", "유알낫얼론", "유아낫얼론"],
+      "videoId": "EfahKom5uic"
+    },
+    {
+      "title": "기적을 넘어 (L.U.V.)",
+      "answers": ["기적을 넘어", "기적을넘어"],
+      "videoId": "g2pBfaTDMBY"
+    },
+    {
+      "title": "GLOW (만화경)",
+      "answers": ["GLOW", "글로우"],
+      "videoId": "D0yn3slJzN4"
+    },
+    {
+      "title": "비밀 이야기 (Our Secret)",
+      "answers": ["비밀 이야기", "비밀이야기"],
+      "videoId": "Ht28cLqhiQ0"
+    },
+    {
+      "title": "Only 1",
+      "answers": ["Only 1", "Only1", "온리 1", "온리 원", "온리1", "온리원"],
+      "videoId": "8RNbDdiiAAY"
+    },
+    {
+      "title": "Truly Love",
+      "answers": ["Truly Love", "TrulyLove", "트룰리 러브", "트룰리러브"],
+      "videoId": "nECch_VQRHw"
+    },
+    {
+      "title": "보호색 (Show Up)",
+      "answers": ["보호색"],
+      "videoId": "oJDOA4S8JHw"
+    },
+    {
+      "title": "겨울, 끝 (It's You)",
+      "answers": ["겨울, 끝", "겨울,끝", "겨울 끝", "겨울끝"],
+      "videoId": "8a8dJ7eDQb4"
+    },
+    {
+      "title": "A Starry Sky",
+      "answers": ["A Starry Sky", "AStarrySky", "어 스태리 스카이", "어스태리스카이"],
+      "videoId": "Jm_pNNNVf8k"
+    },
+    {
+      "title": "Love Oh Love",
+      "answers": ["Love Oh Love", "LoveOhLove", "러브 오 러브", "럽 오 럽", "러브오러브", "럽오럽"],
+      "videoId": "np8Q2jfoPLk"
+    },
+    {
+      "title": "열대야 (Fever)",
+      "answers": ["열대야"],
+      "videoId": "q5uc3_6XMTU"
+    },
+    {
+      "title": "Mr. Blue",
+      "answers": ["Mr. Blue", "Mr.Blue", "Mr Blue", "MrBlue","미스터 블루", "미스터블루"],
+      "videoId": "f10QskYsxOU"
+    },
+    {
+      "title": "좋은 말 할 때 (Smile)",
+      "answers": ["좋은 말 할 때", "좋은말할때"],
+      "videoId": "URIXKpTl2EQ"
+    },
+    {
+      "title": "바라 (Wish)",
+      "answers": ["바라"],
+      "videoId": "dMkgZ7QkHEY"
+    },
+    {
+      "title": "Paradise",
+      "answers": ["Paradise", "파라다이스"],
+      "videoId": "vrH-qac8jlc"
+    },
+    {
+      "title": "기대 (Hope)",
+      "answers": ["기대"],
+      "videoId": "_oCaz5hKkCI"
+    },
+    {
+      "title": "Labyrinth",
+      "answers": ["Labyrinth", "라비린스", "래버린스"],
+      "videoId": "tFu0pCgzN9E"
+    },
+    {
+      "title": "교차로 (Crossroads)",
+      "answers": ["교차로"],
+      "videoId": "ygbyUS0PvFA"
+    },
+    {
+      "title": "Here We Are",
+      "answers": ["Here We Are", "HereWeAre", "히어 위 알", "히어 위 아", "히어위알", "히어위아"],
+      "videoId": "Di8CNLpJiLc"
+    },
+    {
+      "title": "지금 만나러 갑니다 (Eclipse)",
+      "answers": ["지금 만나러 갑니다", "지금만나러갑니다"],
+      "videoId": "QyH4pyRsBiQ"
+    },
+    {
+      "title": "Dreamcatcher",
+      "answers": ["Dreamcatcher", "드림캐처", "드림캐쳐"],
+      "videoId": "jef0ytwHHQM"
+    },
+    {
+      "title": "From Me",
+      "answers": ["From Me", "FromMe", "프롬 미", "프롬미"],
+      "videoId": "2e-nBLjpKZg"
+    },
+    {
+      "title": "Apple",
+      "answers": ["Apple", "애플"],
+      "videoId": "xY_x6OTb0Jc"
+    },
+    {
+      "title": "눈의 시간",
+      "answers": ["눈의 시간", "눈의시간"],
+      "videoId": "gpBe_EIH8pg"
+    },
+    {
+      "title": "거울의 방",
+      "answers": ["거울의 방", "거울의방"],
+      "videoId": "rFoqjKv6goU"
+    },
+    {
+      "title": "Tarot Cards",
+      "answers": ["Tarot Cards", "타로 카드", "타로카드"],
+      "videoId": "Ef4c9JQumU4"
+    },
+    {
+      "title": "Crème Brûlée",
+      "answers": ["Creme Brulee", "CremeBrulee", "크림 브륄레", "크림브륄레"],
+      "videoId": "i35CroMna38"
+    },
+    {
+      "title": "북쪽 계단",
+      "answers": ["북쪽 계단", "북쪽계단"],
+      "videoId": "ZXMa0tYEj-c"
+    },
+    {
+      "title": "MAGO",
+      "answers": ["MAGO", "마고"],
+      "videoId": "sinPks6z2ng"
+    },
+    {
+      "title": "Love Spell",
+      "answers": ["Love Spell", "LoveSpell", "러브 스펠", "럽 스펠", "러브스펠", "럽스펠"],
+      "videoId": "tmN-PvkkSuc"
+    },
+    {
+      "title": "Three Of Cups",
+      "answers": ["Three Of Cups", "ThreeOfCups", "쓰리 오브 컵스", "쓰리오브컵스"],
+      "videoId": "sEaH-WtdkxQ"
+    },
+    {
+      "title": "GRWM",
+      "answers": ["GRWM", "겟 레디 윗 미", "겟레디윗미"],
+      "videoId": "Dqnp7bi21LA"
+    },
+    {
+      "title": "Secret Diary",
+      "answers": ["Secret Diary", "SecretDiary", "시크릿 다이어리", "시크릿다이어리"],
+      "videoId": "h8x47yMQcfE"
+    },
+    {
+      "title": "Better Me",
+      "answers": ["Better Me", "배터 미", "배러 미", "배터미", "배러미"],
+      "videoId": "s2TktuIA9-s"
+    },
+    {
+      "title": "Night Drive",
+      "answers": ["Night Drive", "나이트 드라이브", "나이트드라이브"],
+      "videoId": "O3tBYGXdPgk"
+    },
+    {
+      "title": "앞면의 뒷면의 뒷면",
+      "answers": ["앞면의 뒷면의 뒷면", "앞면의뒷면의뒷면"],
+      "videoId": "tiiu8LhmHcE"
+    },
+    {
+      "title": "우리의 다정한 계절 속에 (Season of Memories)",
+      "answers": ["우리의 다정한 계절 속에", "우리의다정한계절속에"],
+      "videoId": "900DSvmVv5s"
+    },
+    {
+      "title": "Always",
+      "answers": ["Always", "올웨이스", "올웨이즈"],
+      "videoId": "mqcgr_nfFL0"
+    },
+    {
+      "title": "Memoria (Korean Ver.)",
+      "answers": ["Memoria", "메모리아"],
+      "videoId": "Xb0J9M0vIC8"
+    },
+    {
+      "title": "FLOWER (Korean Ver.)",
+      "answers": ["FLOWER", "플라워"],
+      "videoId": "gdVeWHO3xUo"
+    },
+    {
+      "title": "짠 (ZZAN)",
+      "answers": ["짠"],
+      "videoId": "WvdO4sjXAXQ"
+    },
+    {
+      "title": "Wanna Be",
+      "answers": ["Wanna Be", "WannaBe", "워너 비", "워나 비", "워너비", "워나비"],
+      "videoId": "dw_iBWDQcQk"
+    }
+  ]
+}

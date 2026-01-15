@@ -1,0 +1,96 @@
+{
+  "group": "YUJU",
+  "version": 1,
+  "songs": [
+    {
+      "title": "Love Rain (Feat. 수란 SURAN)",
+      "answers": ["Love Rain", "LoveRain", "러브 레인", "러브레인"],
+      "videoId": "30TsGuIovI4"
+    },
+    {
+      "title": "놀이 (Play)",
+      "answers": ["놀이"],
+      "videoId": "Dh5O27ZSCXU"
+    },
+    {
+      "title": "겨우, 겨울 (Feat. 매드클라운)",
+      "answers": ["겨우, 겨울", "겨우,겨울", "겨우 겨울", "겨우겨울"],
+      "videoId": "_jLeh8ioa7w"
+    },
+    {
+      "title": "데킬라 (The Killa)",
+      "answers": ["데킬라"],
+      "videoId": "MKbmpPEoXqE"
+    },
+    {
+      "title": "Blue Nostalgia",
+      "answers": ["Blue Nostalgia", "BlueNostalgia", "블루 노스탤지어", "블루 노스텔지아", "블루 노스탈지어", "블루 노스탈지아", "블루노스탤지어", "블루노스텔지아", "블루노스탈지어", "블루노스탈지아"],
+      "videoId": "iFBic5SN0nM"
+    },
+    {
+      "title": "이브닝 (Feat. BIG Naughty)",
+      "answers": ["이브닝"],
+      "videoId": "SoGs4eleHn0"
+    },
+    {
+      "title": "9 Years",
+      "answers": ["9 Years", "9Years", "나인 이어즈", "나인이어즈", "나인 이어스", "나인이어스", "9 이어즈", "9이어즈", "9 이어스", "9이어스"],
+      "videoId": "kDZxdECxuhc"
+    },
+    {
+      "title": "Without U",
+      "answers": ["Without U", "WithoutU", "위드아웃 유", "위드아웃유"],
+      "videoId": "aOsn-7X6A1k"
+    },
+    {
+      "title": "꿈 (Dreaming)",
+      "answers": ["꿈"],
+      "videoId": "02dj4JrI8fk"
+    },
+    {
+      "title": "복숭아꽃 (Feat. sokodomo)",
+      "answers": ["복숭아꽃"],
+      "videoId": "aJaCELK7K_I"
+    },
+    {
+      "title": "Full Circle",
+      "answers": ["Full Circle", "FullCircle", "풀 서클", "풀서클"],
+      "videoId": "gVHYBt4earQ"
+    },
+    {
+      "title": "따라랏 (DALALA)",
+      "answers": ["따라랏"],
+      "videoId": "mON9JVPV8O4"
+    },
+    {
+      "title": "오리온자리",
+      "answers": ["오리온자리"],
+      "videoId": "tp7IRa7q_5g"
+    },
+    {
+      "title": "REPLY",
+      "answers": ["REPLY", "리플라이"],
+      "videoId": "wQmHdPxxuNY"
+    },
+    {
+      "title": "그날의 사건 (Feat. 정세운)",
+      "answers": ["그날의 사건", "그날의사건"],
+      "videoId": "DtCJ_fNcU7Q"
+    },
+    {
+      "title": "moonstruck love",
+      "answers": ["moonstruck love", "moonstrucklove", "문스트럭 러브", "문스트럭 럽", "문스트럭러브"],
+      "videoId": "-nWRFNWj1bs"
+    },
+    {
+      "title": "No Matter (Feat. GEMINI)",
+      "answers": ["No Matter", "NoMatter", "노 매터", "노 매러", "노 매럴", "노매터", "노매러", "노매럴"],
+      "videoId": "ZBCfiP0kQbE"
+    },
+    {
+      "title": "구름에 걸린 노을처럼",
+      "answers": ["구름에 걸린 노을처럼", "구름에걸린노을처럼"],
+      "videoId": "p8g4pWux52c"
+    }
+  ]
+}

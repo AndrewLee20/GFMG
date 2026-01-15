@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GFRIEND Music Game : Practice Mode</title>
+
+  <style>
+    :root{
+      --bg:#00ABC0;
+      --line:#111;
+      --card:#F0EEE9;
+
+      --accentBtn:#5F4B8B;
+      --accentBtnText:#fff;
+
+      --btn:#ececec;
+      --btn2:#dcdcdc;
+      --ok:#1f7a2e;
+      --bad:#b3261e;
+
+      --radius:18px;
+      --w:min(980px, 100%);
+      --pad:clamp(14px, 2.2vw, 28px);
+      --gap:clamp(10px, 1.6vw, 18px);
+
+      --title:clamp(18px, 2.4vw, 26px);
+      --text:clamp(13px, 1.55vw, 16px);
+      --big:clamp(16px, 2.2vw, 22px);
+      --small:clamp(12px, 1.4vw, 14px);
+      --inputH:clamp(34px, 4.2vw, 44px);
+    }
+
+    html, body { height:100%; }
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:#111;
+      display:grid;
+      place-items:center;
+      padding:14px;
+    }
+
+    .wrap{
+      width:var(--w);
+      display:grid;
+      gap:var(--gap);
+    }
+
+    .panel{
+      background:var(--card);
+      border:3px solid var(--line);
+      border-radius:var(--radius);
+      padding:var(--pad);
+    }
+
+    .now{
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      font-size:var(--title);
+      min-height:clamp(56px, 8vw, 86px);
+      letter-spacing:0.2px;
+      text-align:center;
+    }
+
+    .main{
+      display:grid;
+      gap:clamp(12px, 2vw, 18px);
+      place-items:center;
+      min-height:clamp(320px, 55vw, 520px);
+    }
+
+    .row{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      font-size:var(--text);
+      text-align:center;
+    }
+
+    .num{
+      width:clamp(38px, 6vw, 56px);
+      height:var(--inputH);
+      border:2px solid #777;
+      border-radius:6px;
+      font-size:var(--text);
+      text-align:center;
+      background:#fff;
+      color:#111;
+      outline:none;
+    }
+
+    .hint{
+      font-size:var(--text);
+      font-weight:800;
+    }
+
+    .answerArea{
+      display:grid;
+      place-items:center;
+      gap:10px;
+      width:min(520px, 92%);
+    }
+
+    .answerInput{
+      width:100%;
+      height:var(--inputH);
+      border:2px solid #777;
+      border-radius:6px;
+      font-size:var(--text);
+      padding:0 12px;
+      outline:none;
+      text-align:center;
+      background:#fff;
+    }
+
+    .enterBtn{
+      width:clamp(90px, 16vw, 120px);
+      height:clamp(28px, 4vw, 36px);
+      border:2px solid #777;
+      border-radius:6px;
+      background:#efefef;
+      font-weight:900;
+      cursor:pointer;
+      font-size:var(--small);
+    }
+
+    .stat{
+      font-size:var(--text);
+      font-weight:900;
+    }
+
+    .bigBtns{
+      display:flex;
+      gap:clamp(10px, 2vw, 16px);
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .bigBtn{
+      width:clamp(140px, 26vw, 190px);
+      height:clamp(86px, 12vw, 112px);
+      border:3px solid var(--line);
+      border-radius:20px;
+      background:#ececec;
+      color:#111;
+      font-weight:900;
+      font-size:var(--big);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      line-height:1.05;
+    }
+
+    .bigBtn:disabled{
+      opacity:0.45;
+      cursor:not-allowed;
+    }
+
+    .mvArea{
+      display:grid;
+      place-items:center;
+      gap:8px;
+    }
+
+    .mvLabel{
+      font-size:var(--text);
+      font-weight:900;
+    }
+
+    .mvBtn{
+      width:clamp(46px, 7vw, 60px);
+      height:clamp(28px, 4.4vw, 36px);
+      border:2px solid #2b2b2b;
+      border-radius:6px;
+      background:var(--accentBtn);
+      color:var(--accentBtnText);
+      font-weight:900;
+      cursor:pointer;
+      font-size:var(--small);
+    }
+
+    .mvBtn.off{
+      background:#e6e6e6;
+      color:#111;
+    }
+
+    .footerRow{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      width:100%;
+    }
+
+    .nextBtn{
+      width:clamp(140px, 22vw, 190px);
+      height:clamp(44px, 6vw, 54px);
+      border:3px solid var(--line);
+      border-radius:14px;
+      background:var(--accentBtn);
+      color:var(--accentBtnText);
+      font-weight:900;
+      font-size:var(--text);
+      cursor:pointer;
+    }
+
+    .nextBtn:disabled{
+      opacity:0.45;
+      cursor:not-allowed;
+    }
+
+    .msg{
+      width:min(720px, 94%);
+      text-align:center;
+      font-size:var(--text);
+      font-weight:900;
+      min-height:24px;
+      white-space:pre-line;
+    }
+
+    .msg.ok{ color:var(--ok); }
+    .msg.bad{ color:var(--bad); }
+    .msg.info{ color:#111; }
+
+    .playerAudioOnly{
+      position:absolute;
+      left:-9999px;
+      top:-9999px;
+      width:1px;
+      height:1px;
+      opacity:0;
+      pointer-events:none;
+      overflow:hidden;
+    }
+
+    .playerShow{
+      position:static;
+      left:auto;
+      top:auto;
+      width:min(760px, 96%);
+      border:2px dashed rgba(0,0,0,0.22);
+      border-radius:14px;
+      background:#000;
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .ratio{
+      position:relative;
+      width:100%;
+      aspect-ratio:16/9;
+    }
+
+    #player{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+    }
+
+    .screen{ display:none; width:100%; }
+    .screen.on{
+      display:grid;
+      gap:var(--gap);
+    }
+
+    .startBox{
+      display:grid;
+      gap:16px;
+      place-items:center;
+      min-height:clamp(320px, 40vw, 420px);
+      text-align:center;
+    }
+
+    .bigText{
+      font-size:clamp(18px, 2.6vw, 28px);
+      font-weight:900;
+    }
+
+    .smallText{
+      font-size:var(--text);
+      font-weight:900;
+      text-align:center;
+    }
+
+    .startBtn{
+      width:min(260px, 78%);
+      height:clamp(54px, 6.8vw, 62px);
+      border:3px solid var(--line);
+      border-radius:16px;
+      background:var(--accentBtn);
+      color:var(--accentBtnText);
+      font-weight:900;
+      font-size:clamp(16px, 2vw, 18px);
+      cursor:pointer;
+    }
+
+    .startBtn:disabled{
+      opacity:0.45;
+      cursor:not-allowed;
+    }
+
+    .homeBtn{
+      background:#e6e6e6;
+      color:#111;
+    }
+
+    .groupPick{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .groupBtn{
+      border:3px solid var(--line);
+      border-radius:14px;
+      padding:10px 14px;
+      font-weight:900;
+      cursor:pointer;
+      background:#ececec;
+      color:#111;
+      font-size:var(--text);
+    }
+
+    .groupBtn.on{
+      background:var(--accentBtn);
+      color:var(--accentBtnText);
+    }
+
+    /* MV 아코디언 래퍼 */
+    .mvWrap{
+      width:100%;
+      overflow:hidden;
+      max-height:0;
+      opacity:0;
+      transform:translateY(-6px);
+      transition:max-height 260ms ease, opacity 220ms ease, transform 220ms ease;
+    }
+
+    .mvWrap.on{
+      max-height:900px;
+      opacity:1;
+      transform:translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div id="startScreen" class="screen on">
+      <div class="panel now">
+        <div>연습 모드</div>
+      </div>
+
+      <div class="panel startBox">
+        <div class="bigText">게임 설명</div>
+
+        <div class="smallText">
+          시작 초와 재생 시간을 직접 설정 가능<br />
+          기회 3회, 다시듣기 2회<br />
+          범위를 선택한 뒤 게임 시작을 누르세요
+        </div>
+
+        <div class="bigText">범위를 선택하세요</div>
+        <div id="groupPick" class="groupPick" aria-label="group pick">
+          <button type="button" class="groupBtn on" data-key="gfriend">GFRIEND</button>
+          <button type="button" class="groupBtn" data-key="yerin">YERIN</button>
+          <button type="button" class="groupBtn" data-key="yuju">YUJU</button>
+          <button type="button" class="groupBtn" data-key="viviz">VIVIZ</button>
+        </div>
+
+        <button id="startBtn" class="startBtn">게임 시작</button>
+        <button id="homeBtn" class="startBtn">메인으로</button>
+
+        <div id="msgStart" class="msg info"></div>
+      </div>
+    </div>
+
+    <div id="gameScreen" class="screen">
+      <div class="panel now">
+        <div id="nowText">Now Playing</div>
+      </div>
+
+      <div class="panel main">
+        <div class="row">
+          <input id="startSec" class="num" type="number" min="0" value="1" />
+          <span class="hint">초부터</span>
+          <input id="durSec" class="num" type="number" min="1" value="1" />
+          <span class="hint">초간 들려드립니다</span>
+        </div>
+
+        <div class="answerArea">
+          <input id="answer" class="answerInput" placeholder="입력하세요" autocomplete="off" />
+          <button id="enterBtn" class="enterBtn">Enter</button>
+        </div>
+
+        <div class="stat">
+          남은 기회: <span id="tries">3</span>
+        </div>
+
+        <div class="stat">
+          정답: <span id="score">0/0</span>
+        </div>
+
+        <div class="bigBtns">
+          <button id="revealBtn" class="bigBtn">정답 공개</button>
+          <button id="replayBtn" class="bigBtn">다시듣기<br /><span id="replayLeft">(2)</span></button>
+        </div>
+
+        <div class="mvArea">
+          <div class="mvLabel">M V</div>
+          <button id="mvBtn" class="mvBtn">on</button>
+        </div>
+
+        <div class="footerRow">
+          <button id="nextBtn" class="nextBtn" disabled>다음</button>
+        </div>
+
+        <!-- 다음과 메인으로 사이에 MV 아코디언 -->
+        <div id="mvWrap" class="mvWrap">
+          <div id="playerShell" class="playerAudioOnly">
+            <div class="ratio">
+              <div id="player"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footerRow">
+          <button id="homeBtnGame" class="nextBtn">메인으로</button>
+        </div>
+
+        <div id="msg" class="msg info"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const STORAGE_BLOCK = "gfriend_blocked_videoids_v5"
+
+    const BLOCK_TTL_1 = 7 * 24 * 60 * 60 * 1000
+    const BLOCK_TTL_2 = 30 * 24 * 60 * 60 * 1000
+
+    const GROUPS = {
+      gfriend: { label: "GFRIEND", path: "./assets/songs/gfriend.json" },
+      yerin:  { label: "YERIN",  path: "./assets/songs/yerin.json"  },
+      yuju:   { label: "YUJU",   path: "./assets/songs/yuju.json"   },
+      viviz:  { label: "VIVIZ",  path: "./assets/songs/viviz.json"  },
+    }
+
+    const el = {
+      startScreen: document.getElementById("startScreen"),
+      gameScreen: document.getElementById("gameScreen"),
+
+      startBtn: document.getElementById("startBtn"),
+      homeBtn: document.getElementById("homeBtn"),
+      msgStart: document.getElementById("msgStart"),
+
+      nowText: document.getElementById("nowText"),
+      startSec: document.getElementById("startSec"),
+      durSec: document.getElementById("durSec"),
+      answer: document.getElementById("answer"),
+      enterBtn: document.getElementById("enterBtn"),
+      tries: document.getElementById("tries"),
+      revealBtn: document.getElementById("revealBtn"),
+      replayBtn: document.getElementById("replayBtn"),
+      replayLeft: document.getElementById("replayLeft"),
+      mvBtn: document.getElementById("mvBtn"),
+      nextBtn: document.getElementById("nextBtn"),
+      msg: document.getElementById("msg"),
+      score: document.getElementById("score"),
+      playerShell: document.getElementById("playerShell"),
+
+      mvWrap: document.getElementById("mvWrap"),
+      homeBtnGame: document.getElementById("homeBtnGame"),
+    }
+
+    function showScreen(which){
+      el.startScreen.className = "screen"
+      el.gameScreen.className = "screen"
+      which.className = "screen on"
+    }
+
+    function setMsg(text, kind){
+      if(el.msg){
+        el.msg.className = "msg " + kind
+        el.msg.textContent = text
+      }
+      if(el.msgStart){
+        el.msgStart.className = "msg " + kind
+        el.msgStart.textContent = text
+      }
+    }
+
+    function clampInt(v, min, max, fallback){
+      const n = Number.parseInt(v, 10)
+      if(Number.isNaN(n)) return fallback
+      return Math.max(min, Math.min(max, n))
+    }
+
+    function uniq(arr){
+      return Array.from(new Set((arr || []).filter(Boolean)))
+    }
+
+    function shuffle(a){
+      const b = [...a]
+      for(let i=b.length-1;i>0;i--){
+        const j = Math.floor(Math.random() * (i+1))
+        ;[b[i], b[j]] = [b[j], b[i]]
+      }
+      return b
+    }
+
+    function delay(ms){
+      return new Promise(r => setTimeout(r, ms))
+    }
+
+    function normalize(s){
+      return String(s || "")
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .replace(/[^0-9a-z가-힣]/g, "")
+    }
+
+    function nowMs(){
+      return Date.now()
+    }
+
+    function isExpired(entry){
+      return !entry || typeof entry.until !== "number" || entry.until <= nowMs()
+    }
+
+    function cleanBlocked(obj){
+      const out = {}
+      for(const [vid, entry] of Object.entries(obj || {})){
+        if(!isExpired(entry)) out[vid] = entry
+      }
+      return out
+    }
+
+    function loadBlocked(){
+      try{
+        const raw = localStorage.getItem(STORAGE_BLOCK)
+        if(!raw) return {}
+        const obj = JSON.parse(raw)
+        if(!obj || typeof obj !== "object") return {}
+        return cleanBlocked(obj)
+      } catch {
+        return {}
+      }
+    }
+
+    function saveBlocked(obj){
+      try{
+        const cleaned = cleanBlocked(obj)
+        localStorage.setItem(STORAGE_BLOCK, JSON.stringify(cleaned))
+      } catch {}
+    }
+
+    let blocked = loadBlocked()
+    saveBlocked(blocked)
+
+    function isBlockedVideoId(videoId){
+      const entry = blocked[videoId]
+      if(!entry) return false
+      if(isExpired(entry)){
+        delete blocked[videoId]
+        saveBlocked(blocked)
+        return false
+      }
+      return true
+    }
+
+    function hideVideo(){
+      el.playerShell.className = "playerAudioOnly"
+    }
+
+    function showVideo(){
+      el.playerShell.className = "playerShow"
+    }
+
+    let mvOn = true
+    let revealed = false
+    let revealedLocked = false
+
+    function applyVideoVisibility(){
+      const open = (revealed && mvOn)
+
+      if(open) showVideo()
+      else hideVideo()
+
+      if(el.mvWrap){
+        el.mvWrap.className = open ? "mvWrap on" : "mvWrap"
+      }
+    }
+
+    function toggleMv(){
+      mvOn = !mvOn
+      if(mvOn){
+        el.mvBtn.classList.remove("off")
+        el.mvBtn.textContent = "on"
+      } else {
+        el.mvBtn.classList.add("off")
+        el.mvBtn.textContent = "off"
+      }
+      applyVideoVisibility()
+    }
+
+    let selectedGroupKeys = new Set(["gfriend"])
+
+    let songs = []
+    let list = []
+    let idx = -1
+    let activeVideoId = null
+
+    let triesLeft = 3
+    let replayLeft = 2
+    let correctCount = 0
+    let totalCount = 0
+    let roundEnded = false
+
+    let player = null
+    let ready = false
+    let lastErrorCode = null
+
+    let stopTimer = null
+    let countTimer = null
+    let actionToken = 0
+
+    const YT_STATE = { PLAYING: 1 }
+
+    function stopTimers(){
+      if(stopTimer){ clearTimeout(stopTimer); stopTimer = null }
+      if(countTimer){ clearInterval(countTimer); countTimer = null }
+    }
+
+    function nextToken(){
+      actionToken += 1
+      return actionToken
+    }
+
+    function isCurrentToken(t){
+      return t === actionToken
+    }
+
+    function hardStopMute(){
+      stopTimers()
+      if(player){
+        try{ player.mute() } catch {}
+        try{ player.setVolume(0) } catch {}
+        try{ player.pauseVideo() } catch {}
+        try{ player.stopVideo() } catch {}
+      }
+    }
+
+    function markBlockedIfEmbed(code){
+      if(!activeVideoId) return
+      if(code !== 101 && code !== 150) return
+
+      const vid = activeVideoId
+      const prev = blocked[vid] || { count: 0, until: 0, lastCode: null }
+
+      const nextCount = (typeof prev.count === "number" ? prev.count : 0) + 1
+      const ttl = nextCount >= 2 ? BLOCK_TTL_2 : BLOCK_TTL_1
+
+      blocked[vid] = {
+        count: nextCount,
+        until: nowMs() + ttl,
+        lastCode: code
+      }
+
+      saveBlocked(blocked)
+    }
+
+    function pickPlayableVideoId(song){
+      const ids = uniq(song.videoIds || [])
+      for(const id of ids){
+        if(!isBlockedVideoId(id)) return id
+      }
+      return null
+    }
+
+    function updateScore(){
+      el.score.textContent = String(correctCount) + "/" + String(totalCount)
+    }
+
+    function resetRoundUI(){
+      triesLeft = 3
+      replayLeft = 2
+      revealed = false
+      revealedLocked = false
+      roundEnded = false
+
+      el.tries.textContent = String(triesLeft)
+      el.replayLeft.textContent = "(" + String(replayLeft) + ")"
+      el.answer.value = ""
+      el.nowText.textContent = "Now Playing"
+
+      el.replayBtn.disabled = false
+      el.enterBtn.disabled = false
+      el.answer.disabled = false
+
+      el.nextBtn.disabled = true
+
+      applyVideoVisibility()
+      setMsg("", "info")
+    }
+
+    function pickNextSong(){
+      if(list.length === 0){
+        list = shuffle(songs)
+        idx = -1
+      }
+
+      let safety = 0
+      while(safety < songs.length + 3){
+        idx += 1
+        if(idx >= list.length){
+          list = shuffle(songs)
+          idx = 0
+        }
+
+        const s = list[idx]
+        const vid = pickPlayableVideoId(s)
+        if(vid){
+          activeVideoId = vid
+          return true
+        }
+
+        safety += 1
+      }
+      return false
+    }
+
+    async function waitForPlayingOrError(token, timeoutMs){
+      const started = Date.now()
+      while(Date.now() - started < timeoutMs){
+        if(!isCurrentToken(token)) return { ok:false, reason:"stale" }
+        if(lastErrorCode !== null) return { ok:false, reason:"error", code:lastErrorCode }
+
+        let st = null
+        try{ st = player.getPlayerState() } catch {}
+
+        if(st === YT_STATE.PLAYING) return { ok:true }
+        await delay(80)
+      }
+      return { ok:false, reason:"timeout" }
+    }
+
+    async function startMutedNow(token, videoId){
+      if(!isCurrentToken(token)) return { ok:false, reason:"stale" }
+      lastErrorCode = null
+
+      try{
+        player.mute()
+        player.setVolume(0)
+      } catch {}
+
+      try{
+        player.loadVideoById({ videoId, startSeconds: 0 })
+        player.playVideo()
+      } catch {
+        return { ok:false, reason:"exception" }
+      }
+
+      for(let attempt = 0; attempt < 3; attempt++){
+        const r = await waitForPlayingOrError(token, 1300)
+        if(r.ok) return { ok:true }
+        if(r.reason === "error") return r
+        if(!isCurrentToken(token)) return { ok:false, reason:"stale" }
+
+        try{
+          player.loadVideoById({ videoId, startSeconds: 0 })
+          player.playVideo()
+        } catch {}
+        await delay(160)
+      }
+
+      return { ok:false, reason:"timeout" }
+    }
+
+    async function seekAndUnmuteClip(token, startSec, durSec){
+      if(!isCurrentToken(token)) return { ok:false, reason:"stale" }
+      lastErrorCode = null
+
+      try{
+        player.mute()
+        player.setVolume(0)
+      } catch {}
+
+      try{
+        player.seekTo(startSec, true)
+        player.playVideo()
+      } catch {}
+
+      const r = await waitForPlayingOrError(token, 1200)
+      if(!r.ok) return r
+
+      try{
+        player.unMute()
+        player.setVolume(100)
+      } catch {}
+
+      await delay(120)
+      if(!isCurrentToken(token)) return { ok:false, reason:"stale" }
+      try{
+        player.unMute()
+        player.setVolume(100)
+      } catch {}
+
+      if(stopTimer){ clearTimeout(stopTimer); stopTimer = null }
+      stopTimer = setTimeout(() => {
+        try{
+          player.mute()
+          player.setVolume(0)
+          player.pauseVideo()
+        } catch {}
+        setMsg("정답을 입력하세요", "info")
+      }, durSec * 1000)
+
+      return { ok:true }
+    }
+
+    function startCountdownToPlay(token, seconds, onDone){
+      stopTimers()
+      let n = clampInt(seconds, 1, 30, 3)
+      el.nowText.textContent = String(n) + "초 후 재생"
+      countTimer = setInterval(() => {
+        if(!isCurrentToken(token)){
+          clearInterval(countTimer)
+          countTimer = null
+          el.nowText.textContent = "Now Playing"
+          return
+        }
+        n -= 1
+        if(n <= 0){
+          clearInterval(countTimer)
+          countTimer = null
+          onDone()
+          return
+        }
+        el.nowText.textContent = String(n) + "초 후 재생"
+      }, 1000)
+    }
+
+    async function startNextFlow(){
+      if(!ready){
+        setMsg("플레이어 초기화 중", "bad")
+        return
+      }
+      if(songs.length === 0){
+        setMsg("데이터가 아직 로딩되지 않음", "bad")
+        return
+      }
+
+      const token = nextToken()
+
+      hardStopMute()
+      resetRoundUI()
+
+      const ok = pickNextSong()
+      if(!ok){
+        setMsg("재생 가능한 영상이 없음, 임베드 제한이 너무 많을 수 있음", "bad")
+        return
+      }
+
+      const start = clampInt(el.startSec.value, 0, 3600, 1)
+      const dur = clampInt(el.durSec.value, 1, 20, 1)
+      el.startSec.value = String(start)
+      el.durSec.value = String(dur)
+
+      try{
+        player.mute()
+        player.setVolume(0)
+        player.stopVideo()
+      } catch {}
+
+      const r1 = await startMutedNow(token, activeVideoId)
+      if(!isCurrentToken(token)) return
+
+      if(!r1.ok){
+        if(r1.reason === "error"){
+          markBlockedIfEmbed(r1.code)
+          setMsg("재생 실패로 다음 문제로 이동", "bad")
+          await delay(220)
+          if(isCurrentToken(token)) startNextFlow()
+          return
+        }
+        setMsg("재생 시작 실패로 다음 문제로 이동", "bad")
+        await delay(220)
+        if(isCurrentToken(token)) startNextFlow()
+        return
+      }
+
+      startCountdownToPlay(token, 3, async () => {
+        if(!isCurrentToken(token)) return
+        const r2 = await seekAndUnmuteClip(token, start, dur)
+        if(!isCurrentToken(token)) return
+        if(!r2.ok){
+          if(r2.reason === "error"){
+            markBlockedIfEmbed(r2.code)
+          }
+          setMsg("클립 재생 실패로 다음 문제로 이동", "bad")
+          await delay(250)
+          if(isCurrentToken(token)) startNextFlow()
+          return
+        }
+        el.nowText.textContent = "Now Playing"
+        el.nextBtn.disabled = false
+      })
+    }
+
+    async function replay(){
+      if(revealedLocked){
+        setMsg("정답 공개 후에는 다음 문제로 넘어가야 다시듣기 가능", "bad")
+        return
+      }
+      if(idx < 0){
+        setMsg("다음 버튼을 누르세요", "info")
+        return
+      }
+      if(replayLeft <= 0){
+        setMsg("다시듣기 횟수 없음", "bad")
+        return
+      }
+      if(!ready){
+        setMsg("플레이어 초기화 중", "bad")
+        return
+      }
+
+      const token = nextToken()
+      stopTimers()
+
+      const start = clampInt(el.startSec.value, 0, 3600, 1)
+      const dur = clampInt(el.durSec.value, 1, 20, 1)
+
+      revealed = false
+      applyVideoVisibility()
+
+      setMsg("다시 듣기", "info")
+
+      const r1 = await startMutedNow(token, activeVideoId)
+      if(!isCurrentToken(token)) return
+
+      if(!r1.ok){
+        if(r1.reason === "error"){
+          markBlockedIfEmbed(r1.code)
+          setMsg("임베드 제한 또는 재생 실패, 다음 문제로 이동", "bad")
+          await delay(250)
+          if(isCurrentToken(token)) startNextFlow()
+          return
+        }
+        setMsg("재생 시작 실패", "bad")
+        return
+      }
+
+      replayLeft -= 1
+      el.replayLeft.textContent = "(" + String(replayLeft) + ")"
+
+      const r2 = await seekAndUnmuteClip(token, start, dur)
+      if(!isCurrentToken(token)) return
+
+      if(!r2.ok){
+        replayLeft += 1
+        el.replayLeft.textContent = "(" + String(replayLeft) + ")"
+
+        if(r2.reason === "error"){
+          markBlockedIfEmbed(r2.code)
+          setMsg("클립 재생 실패, 다음 문제로 이동", "bad")
+          await delay(250)
+          if(isCurrentToken(token)) startNextFlow()
+          return
+        }
+        setMsg("클립 재생 실패", "bad")
+        return
+      }
+
+      el.nowText.textContent = "Now Playing"
+      el.nextBtn.disabled = false
+    }
+
+    function reveal(){
+      if(idx < 0){
+        setMsg("다음 버튼을 누르세요", "info")
+        return
+      }
+
+      const token = nextToken()
+      stopTimers()
+
+      revealed = true
+      revealedLocked = true
+      el.replayBtn.disabled = true
+
+      if(!roundEnded){
+        roundEnded = true
+        totalCount += 1
+        updateScore()
+      }
+
+      el.enterBtn.disabled = true
+      el.answer.disabled = true
+
+      applyVideoVisibility()
+
+      const s = list[idx]
+      el.nowText.textContent = "오답"
+      setMsg("정답: " + s.title, "info")
+
+      if(mvOn && activeVideoId && ready){
+        lastErrorCode = null
+        try{
+          player.unMute()
+          player.setVolume(100)
+          player.loadVideoById({ videoId: activeVideoId, startSeconds: 0 })
+          player.playVideo()
+        } catch {}
+
+        ;(async () => {
+          const r = await waitForPlayingOrError(token, 1500)
+          if(!isCurrentToken(token)) return
+          if(!r.ok && r.reason === "error"){
+            markBlockedIfEmbed(r.code)
+            setMsg("MV 임베드 제한, 유튜브에서만 재생 가능", "bad")
+          }
+        })()
+      }
+    }
+
+    function check(){
+      if(idx < 0){
+        setMsg("다음 버튼을 누르세요", "info")
+        return
+      }
+
+      const v = el.answer.value
+      const s = list[idx]
+
+      if(!v || !v.trim()){
+        setMsg("정답을 입력하세요", "bad")
+        return
+      }
+
+      const ok = s.answers.some(a => normalize(a) === normalize(v))
+      if(ok){
+        if(!roundEnded){
+          roundEnded = true
+          correctCount += 1
+          totalCount += 1
+          updateScore()
+        }
+        setMsg("정답", "ok")
+        el.nowText.textContent = "정답"
+        el.nextBtn.disabled = false
+        return
+      }
+
+      triesLeft -= 1
+      el.tries.textContent = String(triesLeft)
+
+      if(triesLeft > 0){
+        setMsg("오답", "bad")
+        el.nowText.textContent = "오답"
+        return
+      }
+
+      if(!roundEnded){
+        roundEnded = true
+        totalCount += 1
+        updateScore()
+      }
+
+      revealed = true
+      applyVideoVisibility()
+      setMsg("기회 소진\n정답: " + s.title, "bad")
+      el.nowText.textContent = "오답"
+      el.nextBtn.disabled = false
+    }
+
+    el.enterBtn.addEventListener("click", () => check())
+    el.answer.addEventListener("keydown", (e) => {
+      if(e.key === "Enter"){
+        e.preventDefault()
+        check()
+      }
+    })
+
+    el.nextBtn.addEventListener("click", () => {
+      if(!ready){
+        setMsg("플레이어 초기화 중", "bad")
+        return
+      }
+      if(songs.length === 0){
+        setMsg("데이터가 아직 로딩되지 않음", "bad")
+        return
+      }
+      startNextFlow()
+    })
+
+    el.replayBtn.addEventListener("click", () => replay())
+    el.revealBtn.addEventListener("click", () => reveal())
+    el.mvBtn.addEventListener("click", () => toggleMv())
+
+    async function loadSongsFromSelectedGroups(){
+      const keys = Array.from(selectedGroupKeys).filter(k => GROUPS[k])
+      if(keys.length === 0){
+        setMsg("범위를 1개 이상 선택하세요", "bad")
+        return false
+      }
+
+      setMsg("데이터 로딩 중", "info")
+      el.startBtn.disabled = true
+
+      try{
+        const results = await Promise.all(keys.map(async (k) => {
+          const g = GROUPS[k]
+          const res = await fetch(g.path, { cache: "no-store" })
+          if(!res.ok) return { key:k, ok:false, songs:[] }
+          const data = await res.json()
+          const loaded = (data && data.songs) ? data.songs : []
+          const mapped = loaded.map(s => ({
+            title: s.title,
+            answers: Array.isArray(s.answers) ? uniq(s.answers) : [],
+            videoIds: s.videoId ? [s.videoId] : []
+          }))
+          return { key:k, ok:true, songs:mapped }
+        }))
+
+        const merged = []
+        for(const r of results){
+          merged.push(...(r.songs || []))
+        }
+
+        songs = merged
+        list = []
+        idx = -1
+        activeVideoId = null
+
+        if(songs.length === 0){
+          setMsg("곡 데이터가 비어있음", "bad")
+          el.startBtn.disabled = false
+          return false
+        }
+
+        const labels = keys.map(k => GROUPS[k].label).join(", ")
+        setMsg(labels + " 로딩 완료", "info")
+        el.startBtn.disabled = false
+        return true
+      } catch {
+        setMsg("데이터 로딩 실패", "bad")
+        el.startBtn.disabled = false
+        return false
+      }
+    }
+
+    async function startGame(){
+      const ok = await loadSongsFromSelectedGroups()
+      if(!ok) return
+
+      correctCount = 0
+      totalCount = 0
+      updateScore()
+
+      resetRoundUI()
+      applyVideoVisibility()
+
+      showScreen(el.gameScreen)
+
+      if(ready){
+        el.nextBtn.disabled = false
+        setMsg("다음 버튼을 누르면 3초 후 시작", "info")
+      } else {
+        setMsg("플레이어 초기화 중", "bad")
+      }
+    }
+
+    function onYouTubeIframeAPIReady(){
+      player = new YT.Player("player", {
+        videoId: "",
+        playerVars: {
+          playsinline: 1,
+          rel: 0,
+          modestbranding: 1,
+          controls: 1,
+          origin: location.origin
+        },
+        events: {
+          onReady: () => {
+            ready = true
+            hideVideo()
+            try{
+              player.mute()
+              player.setVolume(0)
+            } catch {}
+
+            if(el.gameScreen.classList.contains("on") && songs.length > 0){
+              el.nextBtn.disabled = false
+              setMsg("다음 버튼을 누르면 3초 후 시작", "info")
+            }
+          },
+          onError: (e) => {
+            const code = (e && typeof e.data !== "undefined") ? Number(e.data) : -1
+            lastErrorCode = code
+            markBlockedIfEmbed(code)
+          }
+        }
+      })
+    }
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady
+
+    window.addEventListener("DOMContentLoaded", () => {
+      showScreen(el.startScreen)
+
+      applyVideoVisibility()
+      updateScore()
+      el.nextBtn.disabled = true
+
+      const groupPick = document.getElementById("groupPick")
+      if(groupPick){
+        groupPick.addEventListener("click", (e) => {
+          const btn = e.target && e.target.closest ? e.target.closest(".groupBtn") : null
+          if(!btn) return
+
+          const key = String(btn.dataset.key || "")
+          if(!GROUPS[key]) return
+
+          if(btn.classList.contains("on")){
+            if(selectedGroupKeys.size <= 1) return
+            btn.classList.remove("on")
+            selectedGroupKeys.delete(key)
+          } else {
+            btn.classList.add("on")
+            selectedGroupKeys.add(key)
+          }
+        })
+      }
+
+      el.startBtn.addEventListener("click", () => startGame())
+
+      el.homeBtn.addEventListener("click", () => {
+        hardStopMute()
+        location.href = "./index.html"
+      })
+
+      el.homeBtnGame.addEventListener("click", () => {
+        hardStopMute()
+        location.href = "./index.html"
+      })
+
+      const tag = document.createElement("script")
+      tag.src = "https://www.youtube.com/iframe_api"
+      document.head.appendChild(tag)
+    })
+  </script>
+</body>
+</html>

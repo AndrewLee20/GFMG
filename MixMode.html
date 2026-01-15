@@ -1,0 +1,1183 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GFRIEND Music Game : Mix Mode</title>
+
+  <style>
+    :root{
+      --bg:#00ABC0;
+      --line:#111;
+      --card:#F0EEE9;
+
+      --accent:#5F4B8B;
+      --accentText:#fff;
+
+      --ok:#1f7a2e;
+      --bad:#b3261e;
+
+      --radius:18px;
+      --w:min(980px, 100%);
+      --pad:clamp(14px, 2.2vw, 28px);
+      --gap:clamp(10px, 1.6vw, 18px);
+
+      --title:clamp(18px, 2.4vw, 26px);
+      --text:clamp(13px, 1.55vw, 16px);
+      --big:clamp(16px, 2.2vw, 22px);
+      --small:clamp(12px, 1.4vw, 14px);
+      --inputH:clamp(34px, 4.2vw, 44px);
+    }
+
+    html, body { height:100%; }
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:#111;
+      display:grid;
+      place-items:center;
+      padding:14px;
+    }
+
+    .wrap{
+      width:var(--w);
+      display:grid;
+      gap:var(--gap);
+    }
+
+    .panel{
+      background:var(--card);
+      border:3px solid var(--line);
+      border-radius:var(--radius);
+      padding:var(--pad);
+    }
+
+    .now{
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      font-size:var(--title);
+      min-height:clamp(56px, 8vw, 86px);
+      letter-spacing:0.2px;
+      text-align:center;
+    }
+
+    .screen{ display:none; width:100%; }
+    .screen.on{
+      display:grid;
+      gap:var(--gap);
+    }
+
+    .startBox{
+      display:grid;
+      gap:16px;
+      place-items:center;
+      min-height:clamp(320px, 40vw, 420px);
+      text-align:center;
+    }
+
+    .bigText{
+      font-size:clamp(18px, 2.6vw, 28px);
+      font-weight:900;
+    }
+
+    .smallText{
+      font-size:var(--text);
+      font-weight:900;
+      text-align:center;
+      line-height:1.45;
+    }
+
+    .groupPick{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .groupBtn{
+      border:3px solid var(--line);
+      border-radius:14px;
+      padding:10px 14px;
+      font-weight:900;
+      cursor:pointer;
+      background:#ececec;
+      color:#111;
+      font-size:var(--text);
+    }
+
+    .groupBtn.on{
+      background:var(--accent);
+      color:var(--accentText);
+    }
+
+    .startBtn{
+      width:min(260px, 78%);
+      height:clamp(54px, 6.8vw, 62px);
+      border:3px solid var(--line);
+      border-radius:16px;
+      background:var(--accent);
+      color:var(--accentText);
+      font-weight:900;
+      font-size:clamp(16px, 2vw, 18px);
+      cursor:pointer;
+    }
+
+    .startBtn:disabled{
+      opacity:0.45;
+      cursor:not-allowed;
+    }
+
+    .homeBtn{
+      background:#e6e6e6;
+      color:#111;
+    }
+
+    .main{
+      display:grid;
+      gap:clamp(12px, 2vw, 18px);
+      place-items:center;
+      min-height:clamp(320px, 55vw, 520px);
+    }
+
+    .grid3{
+      width:100%;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:var(--gap);
+      align-items:stretch;
+    }
+
+    @media (max-width: 820px){
+      .grid3{ grid-template-columns:1fr; }
+    }
+
+    .songCard{
+      display:grid;
+      gap:10px;
+      border:3px solid rgba(0,0,0,0.22);
+      background:#fff;
+      border-radius:16px;
+      padding:14px;
+      width:100%;
+      overflow:hidden;
+      min-height:clamp(150px, 20vw, 170px);
+    }
+
+    .songTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      width:100%;
+    }
+
+    .songIdx{
+      font-weight:900;
+      font-size:var(--text);
+      border:2px solid rgba(0,0,0,0.2);
+      border-radius:999px;
+      padding:6px 10px;
+      background:#fafafa;
+      white-space:nowrap;
+    }
+
+    .songState{
+      font-weight:900;
+      font-size:var(--small);
+      padding:6px 10px;
+      border-radius:999px;
+      border:2px solid rgba(0,0,0,0.18);
+      background:#ececec;
+      white-space:nowrap;
+    }
+
+    .songState.ok{
+      background:#e8f6ea;
+      border-color:#1f7a2e55;
+      color:var(--ok);
+    }
+
+    .songState.bad{
+      background:#fdeeee;
+      border-color:#b3261e55;
+      color:var(--bad);
+    }
+
+    .answerInput{
+      width:100%;
+      height:var(--inputH);
+      border:2px solid #777;
+      border-radius:12px;
+      font-size:var(--text);
+      padding:0 12px;
+      outline:none;
+      text-align:center;
+      background:#fff;
+      min-width:0;
+    }
+
+    .answerInput:disabled{
+      background:#f6f6f6;
+      color:#666;
+    }
+
+    .bigBtns{
+      display:flex;
+      gap:clamp(10px, 2vw, 16px);
+      justify-content:center;
+      flex-wrap:wrap;
+      width:100%;
+    }
+
+    .bigBtn{
+      width:clamp(140px, 26vw, 190px);
+      height:clamp(86px, 12vw, 112px);
+      border:3px solid var(--line);
+      border-radius:20px;
+      background:#ececec;
+      color:#111;
+      font-weight:900;
+      font-size:var(--big);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      line-height:1.05;
+    }
+
+    .bigBtn:disabled{
+      opacity:0.45;
+      cursor:not-allowed;
+    }
+
+    .footerRow{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      width:100%;
+    }
+
+    .nextBtn{
+      width:clamp(140px, 22vw, 190px);
+      height:clamp(44px, 6vw, 54px);
+      border:3px solid var(--line);
+      border-radius:14px;
+      background:var(--accent);
+      color:var(--accentText);
+      font-weight:900;
+      font-size:var(--text);
+      cursor:pointer;
+    }
+
+    .nextBtn:disabled{
+      opacity:0.45;
+      cursor:not-allowed;
+    }
+
+    .mvArea{
+      display:grid;
+      place-items:center;
+      gap:8px;
+    }
+
+    .mvLabel{
+      font-size:var(--text);
+      font-weight:900;
+    }
+
+    .mvBtn{
+      width:clamp(46px, 7vw, 60px);
+      height:clamp(28px, 4.4vw, 36px);
+      border:2px solid #2b2b2b;
+      border-radius:6px;
+      background:var(--accent);
+      color:var(--accentText);
+      font-weight:900;
+      cursor:pointer;
+      font-size:var(--small);
+    }  
+
+
+    .mvBtn.off{
+      background:#e6e6e6;
+      color:#111;
+    }
+
+    .msg{
+      width:min(720px, 94%);
+      text-align:center;
+      font-size:var(--text);
+      font-weight:900;
+      min-height:24px;
+      white-space:pre-line;
+    }
+
+    .msg.ok{ color:var(--ok); }
+    .msg.bad{ color:var(--bad); }
+    .msg.info{ color:#111; }
+
+    /* MV 공간 아코디언 */
+    .mvWrap{
+      width:min(980px, 98%);
+      overflow:hidden;
+      max-height:0;
+      opacity:0;
+      transform:translateY(-6px);
+      transition:max-height 260ms ease, opacity 220ms ease, transform 220ms ease;
+    }
+
+    .mvWrap.on{
+      max-height:1400px;
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .playerBox{
+      border:2px dashed rgba(0,0,0,0.22);
+      border-radius:14px;
+      background:#000;
+      padding:12px;
+      display:grid;
+      gap:12px;
+    }
+
+    .ytBox{
+      width:100%;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:10px;
+    }
+
+    @media (max-width: 820px){
+      .ytBox{ grid-template-columns:1fr; }
+    }
+
+    .ytItem{
+      display:none;
+      gap:6px;
+    }
+
+    .ytItem.on{
+      display:grid;
+    }
+
+    .ytTitle{
+      color:#fff;
+      font-weight:900;
+      font-size:var(--small);
+      opacity:0.9;
+      text-align:left;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+
+    .ratio{
+      position:relative;
+      width:100%;
+      aspect-ratio:16/9;
+      border-radius:12px;
+      overflow:hidden;
+      background:#000;
+    }
+
+    .ytFrame{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- START SCREEN -->
+    <div id="startScreen" class="screen on">
+      <div class="panel now">
+        <div>믹스 모드</div>
+      </div>
+
+      <div class="panel startBox">
+        <div class="bigText">게임 설명</div>
+        <div class="smallText">
+          3개의 노래의 제목을 맞추면 됩니다<br />
+          범위를 선택한 뒤 게임 시작을 누르세요
+        </div>
+
+        <div class="bigText">범위를 선택하세요</div>
+
+        <div id="groupPick" class="groupPick" aria-label="group pick">
+          <button type="button" class="groupBtn on" data-key="gfriend">GFRIEND</button>
+          <button type="button" class="groupBtn" data-key="yerin">YERIN</button>
+          <button type="button" class="groupBtn" data-key="yuju">YUJU</button>
+          <button type="button" class="groupBtn" data-key="viviz">VIVIZ</button>
+        </div>
+
+        <button id="startBtn" class="startBtn">게임 시작</button>
+        <button id="homeBtn" class="startBtn">메인으로</button>
+
+        <div id="msgStart" class="msg info"></div>
+      </div>
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div id="gameScreen" class="screen">
+      <div class="panel now">
+        <div>Now Playing</div>
+      </div>
+
+      <div class="panel main">
+
+        <div class="grid3" aria-label="answers">
+          <div class="songCard">
+            <div class="songTop">
+              <div class="songIdx">정답 1</div>
+              <div id="state0" class="songState">대기</div>
+            </div>
+            <input id="ans0" class="answerInput" placeholder="입력하세요" autocomplete="off" />
+          </div>
+
+          <div class="songCard">
+            <div class="songTop">
+              <div class="songIdx">정답 2</div>
+              <div id="state1" class="songState">대기</div>
+            </div>
+            <input id="ans1" class="answerInput" placeholder="입력하세요" autocomplete="off" />
+          </div>
+
+          <div class="songCard">
+            <div class="songTop">
+              <div class="songIdx">정답 3</div>
+              <div id="state2" class="songState">대기</div>
+            </div>
+            <input id="ans2" class="answerInput" placeholder="입력하세요" autocomplete="off" />
+          </div>
+        </div>
+
+        <!-- 1 엔터 정답공개 -->
+        <div class="bigBtns">
+          <button id="enterBtn" class="bigBtn">Enter</button>
+          <button id="revealBtn" class="bigBtn">정답 공개</button>
+        </div>
+
+        <!-- 2 MV 온오프 -->
+        <div class="mvArea">
+          <div class="mvLabel">M V</div>
+          <button id="mvBtn" class="mvBtn">on</button>
+        </div>
+
+        <!-- 3 다음 -->
+        <div class="footerRow">
+          <button id="nextBtn" class="nextBtn" disabled>다음</button>
+        </div>
+
+        <!-- 4 MV 공간 (펼쳐짐) -->
+        <div id="mvWrap" class="mvWrap" aria-label="mv area">
+          <div class="playerBox">
+            <div class="ytBox">
+              <div id="ytItem0" class="ytItem">
+                <div id="ytTitle0" class="ytTitle"></div>
+                <div class="ratio">
+                  <div id="player0" class="ytFrame"></div>
+                </div>
+              </div>
+
+              <div id="ytItem1" class="ytItem">
+                <div id="ytTitle1" class="ytTitle"></div>
+                <div class="ratio">
+                  <div id="player1" class="ytFrame"></div>
+                </div>
+              </div>
+
+              <div id="ytItem2" class="ytItem">
+                <div id="ytTitle2" class="ytTitle"></div>
+                <div class="ratio">
+                  <div id="player2" class="ytFrame"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="msg" class="msg info"></div>
+
+        <!-- 5 메인으로 -->
+        <div class="footerRow">
+          <button id="homeBtnGame" class="nextBtn">메인으로</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const STORAGE_BLOCK = "gfriend_blocked_videoids_mix_v2"
+
+    const BLOCK_TTL_1 = 7 * 24 * 60 * 60 * 1000
+    const BLOCK_TTL_2 = 30 * 24 * 60 * 60 * 1000
+
+    const GROUPS = {
+      gfriend: { label: "GFRIEND", path: "./assets/songs/gfriend.json" },
+      yerin:  { label: "YERIN",  path: "./assets/songs/yerin.json"  },
+      yuju:   { label: "YUJU",   path: "./assets/songs/yuju.json"   },
+      viviz:  { label: "VIVIZ",  path: "./assets/songs/viviz.json"  },
+    }
+
+    const el = {
+      startScreen: document.getElementById("startScreen"),
+      gameScreen: document.getElementById("gameScreen"),
+
+      startBtn: document.getElementById("startBtn"),
+      homeBtn: document.getElementById("homeBtn"),
+      msgStart: document.getElementById("msgStart"),
+
+      ans0: document.getElementById("ans0"),
+      ans1: document.getElementById("ans1"),
+      ans2: document.getElementById("ans2"),
+
+      state0: document.getElementById("state0"),
+      state1: document.getElementById("state1"),
+      state2: document.getElementById("state2"),
+
+      enterBtn: document.getElementById("enterBtn"),
+      revealBtn: document.getElementById("revealBtn"),
+      mvBtn: document.getElementById("mvBtn"),
+      nextBtn: document.getElementById("nextBtn"),
+      homeBtnGame: document.getElementById("homeBtnGame"),
+
+      msg: document.getElementById("msg"),
+
+      mvWrap: document.getElementById("mvWrap"),
+      ytItem0: document.getElementById("ytItem0"),
+      ytItem1: document.getElementById("ytItem1"),
+      ytItem2: document.getElementById("ytItem2"),
+      ytTitle0: document.getElementById("ytTitle0"),
+      ytTitle1: document.getElementById("ytTitle1"),
+      ytTitle2: document.getElementById("ytTitle2"),
+    }
+
+    function showScreen(which){
+      el.startScreen.className = "screen"
+      el.gameScreen.className = "screen"
+      which.className = "screen on"
+    }
+
+    function setMsg(text, kind){
+      if(el.msg){
+        el.msg.className = "msg " + kind
+        el.msg.textContent = text
+      }
+      if(el.msgStart){
+        el.msgStart.className = "msg " + kind
+        el.msgStart.textContent = text
+      }
+    }
+
+    function uniq(arr){
+      return Array.from(new Set((arr || []).filter(Boolean)))
+    }
+
+    function shuffle(a){
+      const b = [...a]
+      for(let i=b.length-1;i>0;i--){
+        const j = Math.floor(Math.random() * (i+1))
+        ;[b[i], b[j]] = [b[j], b[i]]
+      }
+      return b
+    }
+
+    function delay(ms){
+      return new Promise(r => setTimeout(r, ms))
+    }
+
+    function normalize(s){
+      return String(s || "")
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .replace(/[^0-9a-z가-힣]/g, "")
+    }
+
+    function nowMs(){ return Date.now() }
+
+    function isExpired(entry){
+      return !entry || typeof entry.until !== "number" || entry.until <= nowMs()
+    }
+
+    function cleanBlocked(obj){
+      const out = {}
+      for(const [vid, entry] of Object.entries(obj || {})){
+        if(!isExpired(entry)) out[vid] = entry
+      }
+      return out
+    }
+
+    function loadBlocked(){
+      try{
+        const raw = localStorage.getItem(STORAGE_BLOCK)
+        if(!raw) return {}
+        const obj = JSON.parse(raw)
+        if(!obj || typeof obj !== "object") return {}
+        return cleanBlocked(obj)
+      } catch {
+        return {}
+      }
+    }
+
+    function saveBlocked(obj){
+      try{
+        const cleaned = cleanBlocked(obj)
+        localStorage.setItem(STORAGE_BLOCK, JSON.stringify(cleaned))
+      } catch {}
+    }
+
+    let blocked = loadBlocked()
+    saveBlocked(blocked)
+
+    function isBlockedVideoId(videoId){
+      const entry = blocked[videoId]
+      if(!entry) return false
+      if(isExpired(entry)){
+        delete blocked[videoId]
+        saveBlocked(blocked)
+        return false
+      }
+      return true
+    }
+
+    function markBlockedIfEmbed(videoId, code){
+      if(!videoId) return
+      if(code !== 101 && code !== 150) return
+
+      const prev = blocked[videoId] || { count: 0, until: 0, lastCode: null }
+
+      const nextCount = (typeof prev.count === "number" ? prev.count : 0) + 1
+      const ttl = nextCount >= 2 ? BLOCK_TTL_2 : BLOCK_TTL_1
+
+      blocked[videoId] = {
+        count: nextCount,
+        until: nowMs() + ttl,
+        lastCode: code
+      }
+
+      saveBlocked(blocked)
+    }
+
+    function pickPlayableVideoId(song){
+      const ids = uniq(song.videoIds || [])
+      for(const id of ids){
+        if(!isBlockedVideoId(id)) return id
+      }
+      return null
+    }
+
+    function setState(i, kind, text){
+      const target = [el.state0, el.state1, el.state2][i]
+      if(!target) return
+      target.className = "songState" + (kind ? " " + kind : "")
+      target.textContent = text
+    }
+
+    let mvOn = true
+
+    function renderMvBtn(){
+      if(mvOn){
+        el.mvBtn.classList.remove("off")
+        el.mvBtn.textContent = "on"
+      } else {
+        el.mvBtn.classList.add("off")
+        el.mvBtn.textContent = "off"
+      }
+    }
+
+    function showMvWrapIfNeeded(){
+      const anyOn =
+        el.ytItem0.classList.contains("on") ||
+        el.ytItem1.classList.contains("on") ||
+        el.ytItem2.classList.contains("on")
+
+      el.mvWrap.className = anyOn ? "mvWrap on" : "mvWrap"
+    }
+
+    function applyMvVisibilityPerSong(){
+      for(let i=0;i<3;i++){
+        const item = [el.ytItem0, el.ytItem1, el.ytItem2][i]
+        const canShow = mvOn && solvedByIndex[i] === true
+        item.className = canShow ? "ytItem on" : "ytItem"
+      }
+      showMvWrapIfNeeded()
+    }
+
+    function toggleMv(){
+      mvOn = !mvOn
+      renderMvBtn()
+      applyMvVisibilityPerSong()
+    }
+
+    let selectedGroupKeys = new Set(["gfriend"])
+
+    let songs = []
+    let pool = []
+
+    let currentSongs = []
+    let currentVideoIds = []
+    let solvedByIndex = [false,false,false]
+
+    let remaining = []
+    let slotsSolvedTitle = [null, null, null]
+
+    let players = [null, null, null]
+    let readyCount = 0
+    let ready = false
+    let lastErrorCodes = [null, null, null]
+
+    let actionToken = 0
+    const YT_STATE = { PLAYING: 1 }
+
+    function nextToken(){
+      actionToken += 1
+      return actionToken
+    }
+
+    function isCurrentToken(t){
+      return t === actionToken
+    }
+
+    function resetSetUI(){
+      solvedByIndex = [false,false,false]
+      slotsSolvedTitle = [null, null, null]
+
+      el.ans0.value = ""
+      el.ans1.value = ""
+      el.ans2.value = ""
+
+      el.ans0.disabled = false
+      el.ans1.disabled = false
+      el.ans2.disabled = false
+
+      setState(0, "", "대기")
+      setState(1, "", "대기")
+      setState(2, "", "대기")
+
+      el.nextBtn.disabled = true
+
+      el.ytTitle0.textContent = ""
+      el.ytTitle1.textContent = ""
+      el.ytTitle2.textContent = ""
+
+      applyMvVisibilityPerSong()
+      setMsg("3곡이 동시에 재생됩니다", "info")
+    }
+
+    function stopAll(){
+      for(const p of players){
+        if(!p) continue
+        try{ p.stopVideo() } catch {}
+      }
+    }
+
+    function pickThreeSongs(){
+      if(songs.length < 3) return false
+      if(pool.length === 0) pool = shuffle(songs)
+
+      const chosen = []
+      const chosenIds = []
+
+      let safety = 0
+      while(chosen.length < 3 && safety < songs.length * 4){
+        if(pool.length === 0) pool = shuffle(songs)
+
+        const s = pool.shift()
+        if(!s){ safety += 1; continue }
+
+        const vid = pickPlayableVideoId(s)
+        if(!vid){ safety += 1; continue }
+
+        if(chosenIds.includes(vid)){ safety += 1; continue }
+        if(chosen.some(x => x.title === s.title)){ safety += 1; continue }
+
+        chosen.push(s)
+        chosenIds.push(vid)
+        safety += 1
+      }
+
+      if(chosen.length !== 3) return false
+
+      currentSongs = chosen
+      currentVideoIds = chosenIds
+
+      remaining = chosen.map((s, idx) => {
+        const normSet = new Set((s.answers || []).map(a => normalize(a)))
+        return { idx, title: s.title, answersNormalized: normSet }
+      })
+
+      return true
+    }
+
+    async function waitForPlayingOrError(token, idx, timeoutMs){
+      const started = Date.now()
+      while(Date.now() - started < timeoutMs){
+        if(!isCurrentToken(token)) return { ok:false, reason:"stale" }
+
+        const code = lastErrorCodes[idx]
+        if(code !== null) return { ok:false, reason:"error", code }
+
+        let st = null
+        try{ st = players[idx].getPlayerState() } catch {}
+        if(st === YT_STATE.PLAYING) return { ok:true }
+
+        await delay(80)
+      }
+      return { ok:false, reason:"timeout" }
+    }
+
+    async function playFull(token){
+      const baseVol = 35
+
+      for(let i=0;i<3;i++){
+        lastErrorCodes[i] = null
+        const p = players[i]
+        const vid = currentVideoIds[i]
+
+        try{
+          p.unMute()
+          p.setVolume(baseVol)
+          p.loadVideoById({ videoId: vid, startSeconds: 0 })
+          p.playVideo()
+        } catch {}
+      }
+
+      for(let i=0;i<3;i++){
+        const r = await waitForPlayingOrError(token, i, 1700)
+        if(!isCurrentToken(token)) return { ok:false, reason:"stale" }
+        if(!r.ok){
+          if(r.reason === "error"){
+            markBlockedIfEmbed(currentVideoIds[i], r.code)
+          }
+          return { ok:false, reason:"fail" }
+        }
+      }
+
+      return { ok:true }
+    }
+
+    async function startNextSet(){
+      if(!ready){
+        setMsg("플레이어 초기화 중", "bad")
+        return
+      }
+      if(songs.length < 3){
+        setMsg("곡 데이터가 3개 이상 필요", "bad")
+        return
+      }
+
+      const token = nextToken()
+      stopAll()
+      resetSetUI()
+
+      const ok = pickThreeSongs()
+      if(!ok){
+        setMsg("재생 가능한 조합이 없음, 임베드 제한이 많을 수 있음", "bad")
+        return
+      }
+
+      const r = await playFull(token)
+      if(!isCurrentToken(token)) return
+
+      if(!r.ok){
+        setMsg("재생 실패로 다음 세트로 변경", "bad")
+        await delay(220)
+        if(isCurrentToken(token)) startNextSet()
+        return
+      }
+
+      setMsg("정답 3개를 맞혀보세요", "info")
+    }
+
+    function isAllSolved(){
+      return solvedByIndex.every(Boolean)
+    }
+
+    function lockSlot(slotIdx, title){
+      const input = [el.ans0, el.ans1, el.ans2][slotIdx]
+      if(!input) return
+
+      input.value = title
+      input.disabled = true
+      slotsSolvedTitle[slotIdx] = title
+
+      setState(slotIdx, "ok", "정답")
+    }
+
+    function matchAndConsumeAnswer(raw){
+      const vNorm = normalize(raw)
+      if(!vNorm) return { ok:false, reason:"empty" }
+
+      for(let i=0;i<remaining.length;i++){
+        const it = remaining[i]
+        if(it.answersNormalized.has(vNorm)){
+          remaining.splice(i, 1)
+          return { ok:true, idx: it.idx, title: it.title }
+        }
+      }
+      return { ok:false, reason:"no_match" }
+    }
+
+    function updateSolvedSong(idx){
+      solvedByIndex[idx] = true
+
+      const titles = [el.ytTitle0, el.ytTitle1, el.ytTitle2]
+      titles[idx].textContent = currentSongs[idx].title
+
+      applyMvVisibilityPerSong()
+    }
+
+    function submitEnter(){
+      if(currentSongs.length !== 3){
+        setMsg("세트가 아직 시작되지 않음", "bad")
+        return
+      }
+
+      const inputs = [el.ans0, el.ans1, el.ans2]
+
+      let anyTried = false
+      let anyNewSolved = false
+
+      for(let slot=0; slot<3; slot++){
+        const input = inputs[slot]
+        if(!input || input.disabled) continue
+
+        const v = input.value
+        if(!v || !v.trim()) continue
+
+        anyTried = true
+
+        const r = matchAndConsumeAnswer(v)
+        if(r.ok){
+          anyNewSolved = true
+          lockSlot(slot, r.title)
+          updateSolvedSong(r.idx)
+        } else {
+          setState(slot, "bad", "오답")
+        }
+      }
+
+      if(!anyTried){
+        setMsg("정답을 입력하세요", "bad")
+        return
+      }
+
+      if(anyNewSolved){
+        if(isAllSolved()){
+          setMsg("3곡 모두 정답\n다음으로 넘어갈 수 있습니다", "ok")
+          el.nextBtn.disabled = false
+        } else {
+          setMsg("정답 처리 완료", "ok")
+        }
+        return
+      }
+
+      setMsg("정답이 없습니다", "bad")
+    }
+
+    function revealAnswers(){
+      if(currentSongs.length !== 3){
+        setMsg("세트가 아직 시작되지 않음", "bad")
+        return
+      }
+
+      remaining = []
+      solvedByIndex = [true,true,true]
+
+      const slotInputs = [el.ans0, el.ans1, el.ans2]
+      const slotStates = [el.state0, el.state1, el.state2]
+
+      const titles = currentSongs.map(s => s.title)
+      let tIdx = 0
+
+      for(let slot=0; slot<3; slot++){
+        const input = slotInputs[slot]
+        if(input.disabled) continue
+        input.value = titles[tIdx] || ""
+        input.disabled = true
+        slotsSolvedTitle[slot] = titles[tIdx] || ""
+        slotStates[slot].className = "songState ok"
+        slotStates[slot].textContent = "정답"
+        tIdx += 1
+      }
+
+      el.ytTitle0.textContent = currentSongs[0].title
+      el.ytTitle1.textContent = currentSongs[1].title
+      el.ytTitle2.textContent = currentSongs[2].title
+
+      applyMvVisibilityPerSong()
+
+      setMsg("정답 공개 완료\n다음으로 넘어갈 수 있습니다", "info")
+      el.nextBtn.disabled = false
+    }
+
+    async function loadSongsFromSelectedGroups(){
+      const keys = Array.from(selectedGroupKeys).filter(k => GROUPS[k])
+      if(keys.length === 0){
+        setMsg("범위를 1개 이상 선택하세요", "bad")
+        return false
+      }
+
+      setMsg("데이터 로딩 중", "info")
+      el.startBtn.disabled = true
+
+      try{
+        const results = await Promise.all(keys.map(async (k) => {
+          const g = GROUPS[k]
+          const res = await fetch(g.path, { cache: "no-store" })
+          if(!res.ok) return { key:k, ok:false, songs:[] }
+          const data = await res.json()
+          const loaded = (data && data.songs) ? data.songs : []
+          const mapped = loaded.map(s => ({
+            title: s.title,
+            answers: Array.isArray(s.answers) ? uniq(s.answers) : [],
+            videoIds: s.videoId ? [s.videoId] : []
+          }))
+          return { key:k, ok:true, songs:mapped }
+        }))
+
+        const merged = []
+        for(const r of results){
+          merged.push(...(r.songs || []))
+        }
+
+        songs = merged
+        pool = []
+
+        if(songs.length < 3){
+          setMsg("곡 데이터가 3개 이상 필요", "bad")
+          el.startBtn.disabled = false
+          return false
+        }
+
+        setMsg("로딩 완료", "info")
+        el.startBtn.disabled = false
+        return true
+      } catch {
+        setMsg("데이터 로딩 실패", "bad")
+        el.startBtn.disabled = false
+        return false
+      }
+    }
+
+    async function startGame(){
+      const ok = await loadSongsFromSelectedGroups()
+      if(!ok) return
+
+      resetSetUI()
+      renderMvBtn()
+      showScreen(el.gameScreen)
+
+      if(ready){
+        await startNextSet()
+      } else {
+        setMsg("플레이어 초기화 중", "bad")
+      }
+    }
+
+    function onYouTubeIframeAPIReady(){
+      const ids = ["player0", "player1", "player2"]
+
+      for(let i=0;i<3;i++){
+        players[i] = new YT.Player(ids[i], {
+          videoId: "",
+          playerVars: {
+            playsinline: 1,
+            rel: 0,
+            modestbranding: 1,
+            controls: 1,
+            origin: location.origin
+          },
+          events: {
+            onReady: () => {
+              readyCount += 1
+              if(readyCount >= 3){
+                ready = true
+                applyMvVisibilityPerSong()
+              }
+            },
+            onError: (e) => {
+              const code = (e && typeof e.data !== "undefined") ? Number(e.data) : -1
+              lastErrorCodes[i] = code
+              const vid = currentVideoIds[i]
+              markBlockedIfEmbed(vid, code)
+            }
+          }
+        })
+      }
+    }
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady
+
+    window.addEventListener("DOMContentLoaded", () => {
+      showScreen(el.startScreen)
+      renderMvBtn()
+      applyMvVisibilityPerSong()
+
+      const groupPick = document.getElementById("groupPick")
+      if(groupPick){
+        groupPick.addEventListener("click", (e) => {
+          const btn = e.target && e.target.closest ? e.target.closest(".groupBtn") : null
+          if(!btn) return
+
+          const key = String(btn.dataset.key || "")
+          if(!GROUPS[key]) return
+
+          if(btn.classList.contains("on")){
+            if(selectedGroupKeys.size <= 1) return
+            btn.classList.remove("on")
+            selectedGroupKeys.delete(key)
+          } else {
+            btn.classList.add("on")
+            selectedGroupKeys.add(key)
+          }
+        })
+      }
+
+      el.startBtn.addEventListener("click", () => startGame())
+
+      el.homeBtn.addEventListener("click", () => {
+        stopAll()
+        location.href = "./index.html"
+      })
+
+      el.homeBtnGame.addEventListener("click", () => {
+        stopAll()
+        location.href = "./index.html"
+      })
+
+      el.enterBtn.addEventListener("click", () => submitEnter())
+      el.revealBtn.addEventListener("click", () => revealAnswers())
+      el.nextBtn.addEventListener("click", () => startNextSet())
+      el.mvBtn.addEventListener("click", () => toggleMv())
+
+      const enterHandler = (e) => {
+        if(e.key === "Enter"){
+          e.preventDefault()
+          submitEnter()
+        }
+      }
+      el.ans0.addEventListener("keydown", enterHandler)
+      el.ans1.addEventListener("keydown", enterHandler)
+      el.ans2.addEventListener("keydown", enterHandler)
+
+      const tag = document.createElement("script")
+      tag.src = "https://www.youtube.com/iframe_api"
+      document.head.appendChild(tag)
+    })
+  </script>
+</body>
+</html>
+

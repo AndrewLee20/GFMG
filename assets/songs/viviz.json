@@ -1,0 +1,211 @@
+{
+  "group": "VIVIZ",
+  "version": 1,
+  "songs": [
+    {
+      "title": "BOP BOP!",
+      "answers": ["BOP BOP!", "BOPBOP!", "BOP BOP", "BOPBOP", "밥 밥", "밥밥"],
+      "videoId": "T_3uQ6WiNvI"
+    },
+    {
+      "title": "Fiesta",
+      "answers": ["Fiesta", "피에스타"],
+      "videoId": "jdEolPBDiNk"
+    },
+    {
+      "title": "Tweet Tweet",
+      "answers": ["Tweet Tweet", "TweetTweet", "트윗 트윗", "트윗트윗"],
+      "videoId": "p3sAOE1aq8k"
+    },
+    {
+      "title": "Lemonade",
+      "answers": ["Lemonade", "레모네이드"],
+      "videoId": "Lnp8B9DfAMM"
+    },
+    {
+      "title": "Love You Like",
+      "answers": ["Love You Like", "LoveYouLike", "러브 유 라이크", "럽 유 라이크", "러브유라이크", "럽유라이크"],
+      "videoId": "ra1s1kQg6RM"
+    },
+    {
+      "title": "거울아",
+      "answers": ["거울아"],
+      "videoId": "SK5lAvNg5Ec"
+    },
+    {
+      "title": "LOVEADE",
+      "answers": ["LOVEADE", "러브에이드", "럽에이드"],
+      "videoId": "nEvwIbwC5wg"
+    },
+    {
+      "title": "SIESTA",
+      "answers": ["SIESTA", "씨에스타", "시에스타"],
+      "videoId": "4byMEUeOPd8"
+    },
+    {
+      "title": "Party Pop",
+      "answers": ["Party Pop", "파티 팝", "파티팝"],
+      "videoId": "ucPWOtwUgw8"
+    },
+    {
+      "title": "Love Love Love",
+      "answers": ["Love Love Love", "LoveLoveLove", "러브 러브 러브", "러브러브러브", "럽 럽 럽", "럽럽럽"],
+      "videoId": "G6M-qNC5B0E"
+    },
+    {
+      "title": "#FLASHBACK",
+      "answers": ["#FLASHBACK", "FLASHBACK", "#플래시백", "해시태그플래시백", "플래시백"],
+      "videoId": "-xK8airLrsA"
+    },
+    {
+      "title": "춤",
+      "answers": ["춤"],
+      "videoId": "tFA88AZ0am4"
+    },
+    {
+      "title": "PULL UP",
+      "answers": ["PULL UP", "PULLUP", "풀 업", "풀업"],
+      "videoId": "6hHb38zcnzk"
+    },
+    {
+      "title": "Blue Clue",
+      "answers": ["Blue Clue", "BlueClue", "블루 클루", "블루클루"],
+      "videoId": "NuQyKqv72Yo"
+    },
+    {
+      "title": "Love or Die",
+      "answers": ["Love or Die", "LoveorDie", "러브 오어 다이", "러브오어다이", "러브 오알 다이", "러브오알다이", "럽 오어 다이", "럽오어다이"],
+      "videoId": "key0qfvyNlM"
+    },
+    {
+      "title": "Vanilla Sugar Killer",
+      "answers": ["Vanilla Sugar Killer", "VanillaSugarKiller", "바닐라 슈가 킬러", "바닐라슈가킬러"],
+      "videoId": "cVuxzBXdLWI"
+    },
+    {
+      "title": "Overdrive",
+      "answers": ["Overdrive", "오버드라이브"],
+      "videoId": "d1_t0ziAdVE"
+    },
+    {
+      "title": "So Special",
+      "answers": ["So Special", "SoSpecial", "쏘 스페셜", "쏘스페셜", "소 스페셜", "소스페셜"],
+      "videoId": "NBnjdeLZNjQ"
+    },
+    {
+      "title": "MANIAC",
+      "answers": ["MANIAC", "매니악"],
+      "videoId": "NqLB6ub1BOw"
+    },
+    {
+      "title": "Untie",
+      "answers": ["Untie", "언타이"],
+      "videoId": "jhnYCKlqicE"
+    },
+    {
+      "title": "Overflow",
+      "answers": ["Overflow", "오버플로우"],
+      "videoId": "IcA6hxxZ440"
+    },
+    {
+      "title": "한 걸음 (Day by day)",
+      "answers": ["한 걸음", "한걸음"],
+      "videoId": "ZZV3PouyqOU"
+    },
+    {
+      "title": "Up 2 Me",
+      "answers": ["Up 2 Me", "Up2Me", "업 투 미", "업투미", "업 2 미", "업2미"],
+      "videoId": "Fp53ZVV6cY4"
+    },
+    {
+      "title": "Shhh!",
+      "answers": ["Shhh!", "Shhh", "쉿"],
+      "videoId": "pAN90mazr60"
+    },
+    {
+      "title": "Cliché",
+      "answers": ["Cliche", "클리셰"],
+      "videoId": "irBDYaZ9nZ0"
+    },
+    {
+      "title": "Full Moon",
+      "answers": ["Full Moon", "FullMoon", "풀 문", "풀문"],
+      "videoId": "PbIMshq0uPg"
+    },
+    {
+      "title": "Hypnotize",
+      "answers": ["Hypnotize", "힙노타이즈"],
+      "videoId": "cuya3R_hNZk"
+    },
+    {
+      "title": "Love & Tears",
+      "answers": ["Love & Tears", "Love&Tears", "Love and Tears", "LoveandTears", "러브 앤 티어즈", "러브앤티어즈", "러브앤티어스", "러브 앤 티어스", "러브 앤드 티어즈", "러브 앤드 티어스", "러브앤드티어즈", "러브앤드티어스"],
+      "videoId": "rcjJwet3I-Q"
+    },
+    {
+      "title": "La La Love Me",
+      "answers": ["La La Love Me", "LaLaLoveMe", "라 라 러브 미", "라라러브미", "라 라 럽 미", "라라럽미"],
+      "videoId": "5gheOSMP-Bc"
+    },
+    {
+      "title": "Hands Off My Heart",
+      "answers": ["Hands Off My Heart", "Hands Off My Heart", "핸즈 오프 마이 하트", "핸즈오프마이하트"],
+      "videoId": "XSIrhnkTvT4"
+    },
+    {
+      "title": "Citrus",
+      "answers": ["Citrus", "시트러스"],
+      "videoId": "4VxhlAFrqGE"
+    },
+    {
+      "title": "Sticker",
+      "answers": ["Sticker", "스티커"],
+      "videoId": "pdfw26OPgv8"
+    },
+    {
+      "title": "Toxic",
+      "answers": ["Toxic", "톡식"],
+      "videoId": "ln78QmJYvxM"
+    },
+    {
+      "title": "Hipnotic (SINB Solo)",
+      "answers": ["Hipnotic", "힙노틱"],
+      "videoId": "W4xpYBWL5rU"
+    },
+    {
+      "title": "Love Language (UMJI Solo)",
+      "answers": ["Love Language", "LoveLanguage", "러브 랭귀지", "러브랭귀지", "럽랭귀지", "럽 랭귀지"],
+      "videoId": "ZN-BzEDtcpk"
+    },
+    {
+      "title": "Milky Way (EUNHA Solo)",
+      "answers": ["Milky Way", "MilkyWay", "밀키 웨이", "밀키웨이"],
+      "videoId": "t7Kig5MVMEc"
+    },
+    {
+      "title": "Wildflower",
+      "answers": ["Wildflower", "와일드플라워"],
+      "videoId": "wyTw3cuHsf8"
+    },
+    {
+      "title": "Rum Pum Pum",
+      "answers": ["Rum Pum Pum", "RumPumPum", "럼 펌 펌", "럼펌펌"],
+      "videoId": "vMIppcK0tEI"
+    },
+    {
+      "title": "늘 지금처럼",
+      "answers": ["늘 지금처럼"],
+      "videoId": "1P6jZGCopFk"
+    },
+    {
+      "title": "Make Me Love U",
+      "answers": ["Make Me Love U", "MakeMeLoveU", "메이크 미 러브 유", "메이크미러브유", "메이크 미 럽 유", "메이크미럽유"],
+      "videoId": "lM8pmNo-osI"
+    },
+    {
+      "title": "Spoiler",
+      "answers": ["Spoiler", "스포일러"],
+      "videoId": "zw1Tu4u2dGY"
+    }
+  ]
+}

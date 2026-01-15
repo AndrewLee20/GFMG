@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GFRIEND Music Game</title>
+
+  <style>
+    :root{
+      --bg:#00ABC0;
+      --line:#111;
+      --card:#F0EEE9;
+
+      --accent:#5F4B8B;
+      --accentText:#fff;
+
+      --radius:18px;
+      --w:min(980px, 100%);
+      --pad:clamp(14px, 2.2vw, 28px);
+      --gap:clamp(10px, 1.6vw, 18px);
+
+      --title:clamp(18px, 2.8vw, 30px);
+      --text:clamp(13px, 1.55vw, 16px);
+      --big:clamp(16px, 2.2vw, 22px);
+    }
+
+    html, body { height:100%; }
+    body{
+      margin:0;
+      font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:#111;
+      display:grid;
+      place-items:center;
+      padding:14px;
+    }
+
+    .wrap{
+      width:var(--w);
+      display:grid;
+      gap:var(--gap);
+    }
+
+    .panel{
+      background:var(--card);
+      border:3px solid var(--line);
+      border-radius:var(--radius);
+      padding:var(--pad);
+    }
+
+    .header{
+      display:grid;
+      place-items:center;
+      gap:10px;
+      text-align:center;
+      padding:clamp(18px, 3vw, 28px);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:var(--gap);
+    }
+
+    @media (max-width: 820px){
+      .grid{ grid-template-columns:1fr; }
+    }
+
+    .card{
+      display:flex;
+      flex-direction:column;
+      align-content:stretch;
+      min-height:clamp(170px, 22vw, 210px);
+      padding-bottom:clamp(18px, 2.2vw, 26px);
+    }
+
+    .cardTitle{
+      font-weight:900;
+      font-size:var(--big);
+      margin-bottom:14px;
+    }
+
+    .cardDesc{
+      font-weight:800;
+      font-size:var(--text);
+      line-height:1.4;
+    }
+
+    .btn{
+      width:100%;
+      height:clamp(52px, 6.8vw, 62px);
+      border:3px solid var(--line);
+      border-radius:16px;
+      background:var(--accent);
+      color:var(--accentText);
+      font-weight:900;
+      font-size:var(--big);
+      cursor:pointer;
+      margin-top:auto;
+    }
+
+    .btn:disabled{
+      opacity:0.45;
+      cursor:not-allowed;
+      background:#b9b3c6;
+      color:#111;
+    }
+
+    .hint{
+      font-weight:800;
+      font-size:var(--text);
+      text-align:center;
+      opacity:0.95;
+    }
+
+    .homeTitle{
+      font-size:clamp(18px, 2.6vw, 24px);
+      font-weight:900;
+      text-align:center;
+    }
+
+    .homeSub{
+      margin-top:6px;
+      font-size:var(--text);
+      font-weight:800;
+      text-align:center;
+    }
+
+    .homeTitleRow{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+    }
+
+    .homeLogoInline{
+      height:clamp(26px, 4vw, 42px);
+      width:auto;
+      display:block;
+    }
+
+    .homeTitleText{
+      font-size:clamp(18px, 2.6vw, 30px);
+      font-weight:900;
+      line-height:1;
+    }
+
+    .descTitle{
+      font-size:var(--title);
+      font-weight:900;
+      margin-bottom:10px;  
+    }
+
+    .descText{
+      font-size:var(--text);
+      font-weight:800;
+      line-height:1.55;    
+      margin-bottom:18px; 
+    }
+
+    .homeFooterText{
+      margin-top:18px;
+      padding-bottom:30px;
+      text-align:center;
+      font-size:var(--small);
+      font-weight:800;
+      opacity:0.9;
+      color:#fff;
+      text-shadow:0 2px 0 rgba(0,0,0,0.25);
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="panel now">
+      <div class="homeTitleRow">
+        <img class="homeLogoInline" src="./assets/ui/gfriend-logo.svg" alt="GFRIEND" />
+        <div class="homeTitleText">Music Game</div>
+      </div>
+      <div class="homeSub"></div>
+    </div>
+
+    <div class="panel homeMid">
+      <div class="homeTitle">💓여자친구 데뷔 11주년 축하해🎉🎉</div>
+      <div class="homeSub">소원🤍예린🤍은하💙유주💙신비💜엄지💜<br/>
+        Love u always🤍💙💜
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="panel card">
+        <div class="cardTitle">연습 모드</div>
+        <div class="cardDesc">
+          시작 초와 재생 시간을 직접 설정<br />
+          기회 3회, 다시듣기 2회
+        </div>
+        <button class="btn" id="goPractice">시작</button>
+      </div>
+
+      <div class="panel card">
+        <div class="cardTitle">챌린지 모드</div>
+        <div class="cardDesc">
+          하드 모드<br />
+          제한 시간 10초, 생명 3개
+        </div>
+        <button class="btn" id="goChallenge">시작</button>
+      </div>
+
+      <div class="panel card">
+        <div class="cardTitle">믹스 모드</div>
+        <div class="cardDesc">
+          동시에 재생되는 3개의 노래 제목 맞추기
+        </div>
+        <button class="btn" id="goMix">시작</button>
+      </div>
+    </div>
+
+    <div class="panel hint">
+      <div class="descTitle">게임 설명</div>
+      <div class="descText">여자친구와 멤버들의 노래를 듣고 곡 제목을 맞히는 음악 퀴즈입니다</div>
+      <div class="descTitle">저작권 안내</div>
+      <div class="descText">유튜브를 통해 노래가 재생되며 음원과 영상의 저작권은 각 저작권자에게 있습니다<br/>
+        본 게임은 비영리 목적이며 수익을 창출하지 않습니다<br/>
+        문제가 될 경우 요청에 따라 즉시 조치하겠습니다
+      </div>
+    </div>
+
+    <div class="panel hint">
+      <div class="descTitle">게임 내 수록곡</div>
+      <div class="descText">여자친구 : 미니 1집 Season of Glass ~ 스페셜 앨범 Season of Memories<br/>
+        예린 : 미니 1집 ARIA ~ 디지털 싱글 1집 Awake<br/>
+        유주 : 디지털 싱글 LOVE RAIN ~ 미니 3집 In Bloom<br/>
+        비비지 : 미니 1집 Beam Of Prism ~ 정규 1집 A Montage of ( )
+      </div>
+    </div>
+  </div>
+
+  <div class="homeFooterText">
+    여자친구 멤버들과 여자친구를 사랑하는 모든 버디에게 바칩니다.<br />
+    응원은! 힘차게! 여!자!친!구!<br />
+    문의: gfriendmusicgame@gmail.com
+  </div>
+
+  <script>
+
+    document.getElementById("goPractice").addEventListener("click", () => {
+      location.href = "./CareerMode.html"
+    })
+
+    document.getElementById("goChallenge").addEventListener("click", () => {
+      location.href = "./ChallengeMode.html"
+    })
+
+    document.getElementById("goMix").addEventListener("click", () => {
+      location.href = "./MixMode.html"
+    })
+  </script>
+</body>
+</html>

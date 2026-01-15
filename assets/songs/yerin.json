@@ -1,0 +1,76 @@
+{
+  "group": "YERIN",
+  "version": 1,
+  "songs": [
+    {
+      "title": "ARIA",
+      "answers": ["ARIA", "아리아"],
+      "videoId": "N1KD5mWHFz0"
+    },
+    {
+      "title": "Believer",
+      "answers": ["Believer", "빌리버"],
+      "videoId": "DcGvmWPivaY"
+    },
+    {
+      "title": "Lalala",
+      "answers": ["Lalala", "라라라"],
+      "videoId": "8h4MVlJvvN8"
+    },
+    {
+      "title": "시간 (Time)",
+      "answers": ["시간"],
+      "videoId": "z6IBkMzBaB0"
+    },
+    {
+      "title": "밤밤밤 (Bambambam)",
+      "answers": ["밤밤밤"],
+      "videoId": "ZO68g8eYiYw"
+    },
+    {
+      "title": "루프탑 (Summer Charm)",
+      "answers": ["루프탑"],
+      "videoId": "Ao0ElpVfzzw"
+    },
+    {
+      "title": "THE DANCE",
+      "answers": ["THE DANCE", "THEDANCE", "더 댄스", "더댄스"],
+      "videoId": "PinDDAR9PeQ"
+    },
+    {
+      "title": "Wavy",
+      "answers": ["Wavy", "웨이비"],
+      "videoId": "j0UXeXBcbk0"
+    },
+    {
+      "title": "볕뉘 (SHINE)",
+      "answers": ["볕뉘"],
+      "videoId": "hKKcCqN1N4I"
+    },
+    {
+      "title": "Permeate",
+      "answers": ["Permeate", "펄미에이트"],
+      "videoId": "Yp_Yn2T2acY"
+    },
+    {
+      "title": "Save me",
+      "answers": ["Save me", "Saveme", "세이브 미", "세이브미"],
+      "videoId": "YMy-_V4EbIc"
+    },
+    {
+      "title": "One Thing (Feat. 김다연 of Kep1er)",
+      "answers": ["One Thing", "OneThing", "원 띵", "원띵"],
+      "videoId": "_6293Ft9DdM"
+    },
+    {
+      "title": "4U",
+      "answers": ["4U", "포유", "4유"],
+      "videoId": "03BGlDjowVU"
+    },
+    {
+      "title": "Awake",
+      "answers": ["Awake", "어웨이크"],
+      "videoId": "mVKPURmYBKc"
+    }
+  ]
+}
