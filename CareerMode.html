@@ -338,7 +338,6 @@
       color:var(--accentBtnText);
     }
 
-    /* MV 아코디언 래퍼 */
     .mvWrap{
       width:100%;
       overflow:hidden;
@@ -352,6 +351,23 @@
       max-height:900px;
       opacity:1;
       transform:translateY(0);
+    }
+
+    @media (max-width: 520px){
+      .groupPick{
+        display:grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap:10px;
+        width:min(360px, 92%);
+        margin:0 auto;
+      }
+
+      .groupBtn{
+        width:100%;
+        padding:12px 0;
+        text-align:center;
+        border-radius:14px;
+      }
     }
   </style>
 </head>
@@ -1266,4 +1282,5 @@
   </script>
 </body>
 </html>
+
 
