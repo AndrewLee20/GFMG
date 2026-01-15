@@ -364,6 +364,65 @@
       min-height:clamp(320px, 40vw, 420px);
       text-align:center;
     }
+
+    .rankPanel{
+      width:min(520px, 92%);
+      border:3px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+      padding:14px 14px;
+      text-align:left;
+    }
+    
+    .rankTitle{
+      font-size:var(--text);
+      font-weight:900;
+      margin-bottom:10px;
+    }
+    
+    .rankList{
+      display:grid;
+      gap:6px;
+      font-size:var(--text);
+      font-weight:900;
+      white-space:pre-line;
+    }
+    
+    .rankLine{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    
+    .rankLeft{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    
+    .rankNum{
+      width:44px;
+      text-align:right;
+      font-weight:900;
+    }
+    
+    .rankName{
+      font-weight:900;
+    }
+    
+    .rankRight{
+      font-weight:900;
+      color:#111;
+      opacity:0.85;
+    }
+    
+    .rankMe{
+      background:var(--card);
+      border:2px solid var(--line);
+      border-radius:12px;
+      padding:8px 10px;
+    }
         
     @media (max-width: 520px){
       .groupPick{
@@ -480,7 +539,10 @@
       </div>
       <div class="panel gameOverBox">
         <div id="gameOverText" class="bigText"></div>
-        <div id="rankBox" class="smallText"></div>
+        <div class="rankPanel">
+          <div class="rankTitle">랭킹 TOP 20</div>
+          <div id="rankBox" class="rankList"></div>
+        </div>
         <button id="restartBtn" class="startBtn">처음으로</button>
       </div>
     </div>
@@ -881,17 +943,29 @@
 
     async function gameOver(){
       hardStopMute()
-      const text = nickname + "님의 점수는 " + String(correctCount) + "/" + String(totalCount) + "입니다"
+    
+      const text =
+        nickname + "님의 점수는 " +
+        String(correctCount) + "/" + String(totalCount) + "입니다"
+    
       el.gameOverText.textContent = text
       showScreen(el.gameOverScreen)
-
-      el.rankBox.textContent = "랭킹 불러오는 중"
-
+    
+      el.rankBox.innerHTML = `
+        <div class="rankLine">
+          <div class="rankLeft">
+            <span class="rankNum">-</span>
+            <span class="rankName">랭킹 불러오는 중</span>
+          </div>
+          <div class="rankRight"></div>
+        </div>
+      `
+    
       await submitScore()
-      const rankingText = await loadRanking()
-      el.rankBox.textContent = rankingText || "랭킹 로딩 실패"
+    
+      const list = await loadRanking()
+      renderRanking(list)
     }
-
 
     async function waitForPlayingOrError(token, timeoutMs){
       const started = Date.now()
@@ -1336,21 +1410,52 @@
       try{
         const res = await fetch("/api/ranking?limit=20")
         const json = await res.json()
-        if(!json || !json.ok) return ""
-
-        const lines = []
-        lines.push("TOP 20")
-        for(const r of json.data){
-          lines.push(
-            String(r.rank) + "위  " + r.nickname +
-            "  " + String(r.score) + "점" +
-            "  (" + String(r.correct) + "/" + String(r.total) + ")"
-          )
-        }
-        return lines.join("\n")
+        if(!json || !json.ok) return []
+        return Array.isArray(json.data) ? json.data : []
       } catch {
-        return ""
+        return []
       }
+    }
+
+    function escapeHtml(s){
+      return String(s || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;")
+    }
+    
+    function renderRanking(list){
+      if(!el.rankBox) return
+    
+      if(!list || list.length === 0){
+        el.rankBox.innerHTML = `<div class="rankLine">
+          <div class="rankLeft">
+            <span class="rankNum">-</span>
+            <span class="rankName">랭킹 없음</span>
+          </div>
+        </div>`
+        return
+      }
+    
+      const html = list.map(r => {
+        const lineLeft = `${r.rank}위`
+        const name = `${escapeHtml(r.nickname)}님`
+        const right = `${r.score}점 (${r.correct}/${r.total})`
+    
+        return `
+          <div class="rankLine">
+            <div class="rankLeft">
+              <span class="rankNum">${lineLeft}</span>
+              <span class="rankName">${name}</span>
+            </div>
+            <div class="rankRight">${right}</div>
+          </div>
+        `
+      }).join("")
+    
+      el.rankBox.innerHTML = html
     }
 
     function onYouTubeIframeAPIReady(){
@@ -1453,3 +1558,4 @@
   </script>
 </body>
 </html>
+
