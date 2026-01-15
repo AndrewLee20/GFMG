@@ -217,20 +217,6 @@
       cursor:not-allowed;
     }
 
-    .answerLine{
-      width:min(720px, 94%);
-      text-align:center;
-      font-size:var(--text);
-      font-weight:900;
-      min-height:22px;
-      white-space:pre-line;
-      margin-top:2px;
-    }
-
-    .answerLine.ok{ color:var(--ok); }
-    .answerLine.bad{ color:var(--bad); }
-    .answerLine.info{ color:#111; }
-
     .msg{
       width:min(720px, 94%);
       text-align:center;
@@ -402,7 +388,7 @@
           기회는 3번이고 다시듣기 2회입니다<br />
           범위를 선택한 뒤 게임 시작을 누르세요<br />
         </div>
-
+        
         <div class="bigText">입력 가이드</div>
         <div class="smallText">
           대소문자, 띄어쓰기 상관없습니다<br />
@@ -464,9 +450,7 @@
           <button id="nextBtn" class="nextBtn" disabled>다음</button>
         </div>
 
-        <!-- 정답 위치 고정: 다음 버튼 아래 + 유튜브 위 -->
-        <div id="answerLine" class="answerLine info"></div>
-
+        <!-- 다음과 메인으로 사이에 MV 아코디언 -->
         <div id="mvWrap" class="mvWrap">
           <div id="playerShell" class="playerAudioOnly">
             <div class="ratio">
@@ -523,8 +507,6 @@
 
       mvWrap: document.getElementById("mvWrap"),
       homeBtnGame: document.getElementById("homeBtnGame"),
-
-      answerLine: document.getElementById("answerLine"),
     }
 
     function showScreen(which){
@@ -542,12 +524,6 @@
         el.msgStart.className = "msg " + kind
         el.msgStart.textContent = text
       }
-    }
-
-    function setAnswerLine(text, kind){
-      if(!el.answerLine) return
-      el.answerLine.className = "answerLine " + (kind || "info")
-      el.answerLine.textContent = text || ""
     }
 
     function clampInt(v, min, max, fallback){
@@ -761,7 +737,6 @@
 
       el.nextBtn.disabled = true
 
-      setAnswerLine("", "info")
       applyVideoVisibility()
       setMsg("", "info")
     }
@@ -1065,8 +1040,7 @@
 
       const s = list[idx]
       el.nowText.textContent = "오답"
-      setAnswerLine("정답: " + s.title, "bad")
-      setMsg("정답 공개", "info")
+      setMsg("정답: " + s.title, "info")
 
       if(mvOn && activeVideoId && ready){
         lastErrorCode = null
@@ -1110,7 +1084,6 @@
           totalCount += 1
           updateScore()
         }
-        setAnswerLine("정답: " + s.title, "ok")
         setMsg("정답", "ok")
         el.nowText.textContent = "정답"
         el.nextBtn.disabled = false
@@ -1134,8 +1107,7 @@
 
       revealed = true
       applyVideoVisibility()
-      setAnswerLine("정답: " + s.title, "bad")
-      setMsg("기회 소진", "bad")
+      setMsg("기회 소진\n정답: " + s.title, "bad")
       el.nowText.textContent = "오답"
       el.nextBtn.disabled = false
     }
@@ -1283,7 +1255,6 @@
       applyVideoVisibility()
       updateScore()
       el.nextBtn.disabled = true
-      setAnswerLine("", "info")
 
       const groupPick = document.getElementById("groupPick")
       if(groupPick){
