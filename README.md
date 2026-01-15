@@ -1,0 +1,2 @@
+# GFMG
+GFRIEND Music Game
