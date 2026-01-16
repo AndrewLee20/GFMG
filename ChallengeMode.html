@@ -744,10 +744,9 @@
       const parts = []
       for(let i=0;i<MAX_LIVES;i++){
         const alive = i < livesLeft
-        const cls = alive ? "heartAlive" : "heartDead"
-        parts.push('<span class="' + cls + '">❤</span>')
+        parts.push(alive ? "❤️" : "🖤")
       }
-      el.livesRow.innerHTML = parts.join("")
+      el.livesRow.textContent = parts.join("")
     }
 
     function updateReplayLeft(){
@@ -1560,6 +1559,7 @@
   </script>
 </body>
 </html>
+
 
 
 
