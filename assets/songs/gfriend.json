@@ -4,7 +4,7 @@
   "songs": [
     {
       "title": "유리구슬 (Glass Bead)",
-      "answers": ["유리구슬"],
+      "answers": ["유리구슬", "유구"],
       "videoId": "u6w1mB2xIs4"
     },
     {
@@ -19,7 +19,7 @@
     },
     {
       "title": "오늘부터 우리는 (Me gustas tu)",
-      "answers": ["오늘부터 우리는", "오늘부터우리는"],
+      "answers": ["오늘부터 우리는", "오늘부터우리는", "오우"],
       "videoId": "xJtqXz521mM"
     },
     {
@@ -39,12 +39,12 @@
     },
     {
       "title": "시간을 달려서 (Rough)",
-      "answers": ["시간을달려서", "시간을달려서"],
+      "answers": ["시간을달려서", "시간을 달려서", "시달"],
       "videoId": "YXCkpXY1cuc"
     },
     {
       "title": "내 이름을 불러줘 (Say My Name)",
-      "answers": ["내 이름을 불러줘", "내이름을불러줘"],
+      "answers": ["내 이름을 불러줘", "내이름을불러줘", "내이불"],
       "videoId": "B00xPgeOjwQ"
     },
     {
@@ -69,7 +69,7 @@
     },
     {
       "title": "너 그리고 나 (NAVILLERA)",
-      "answers": ["너 그리고 나", "너그리고나"],
+      "answers": ["너 그리고 나", "너그리고나", "너그나"],
       "videoId": "fG_pZOn-rKg"
     },
     {
@@ -109,17 +109,17 @@
     },
     {
       "title": "바람에 날려 (Gone with the wind)",
-      "answers": ["바람에 날려", "바람에날려"],
+      "answers": ["바람에 날려", "바람에날려", "바날"],
       "videoId": "-NOnDyCvcXA"
     },
     {
       "title": "바람의 노래 (Hear The Wind Sing)",
-      "answers": ["바람의 노래", "바람의노래"],
+      "answers": ["바람의 노래", "바람의노래", "바노"],
       "videoId": "F3LBWZxaRDM"
     },
     {
       "title": "FINGERTIP",
-      "answers": ["FINGERTIP", "핑거팁"],
+      "answers": ["FINGERTIP", "핑거팁", "핑팁"],
       "videoId": "Z8yv9fwXXbY"
     },
     {
@@ -129,7 +129,7 @@
     },
     {
       "title": "나의 지구를 지켜줘 (Please Save My Earth)",
-      "answers": ["나의 지구를 지켜줘", "나의지구를지켜줘"],
+      "answers": ["나의 지구를 지켜줘", "나의지구를지켜줘", "나지지"],
       "videoId": "xAAwB3msPco"
     },
     {
@@ -144,7 +144,7 @@
     },
     {
       "title": "귀를 기울이면 (LOVE WHISPER)",
-      "answers": ["귀를 기울이면", "귀를기울이면"],
+      "answers": ["귀를 기울이면", "귀를기울이면", "귀기"],
       "videoId": "8JiO3PVdsb0"
     },
     {
@@ -229,7 +229,7 @@
     },
     {
       "title": "바람 바람 바람 (Windy Windy)",
-      "answers": ["바람 바람 바람", "바람바람바람"],
+      "answers": ["바람 바람 바람", "바람바람바람", "삼바람"],
       "videoId": "nQ9AhtHM3dk"
     },
     {
@@ -244,7 +244,7 @@
     },
     {
       "title": "You are not alone",
-      "answers": ["You are not alone", "Youarenotalone", "유 알 낫 얼론", "유 아 낫 얼론", "유알낫얼론", "유아낫얼론"],
+      "answers": ["You are not alone", "Youarenotalone", "유 알 낫 얼론", "유 아 낫 얼론", "유알낫얼론", "유아낫얼론", "YANA"],
       "videoId": "EfahKom5uic"
     },
     {
@@ -284,7 +284,7 @@
     },
     {
       "title": "A Starry Sky",
-      "answers": ["A Starry Sky", "AStarrySky", "어 스태리 스카이", "어스태리스카이"],
+      "answers": ["A Starry Sky", "AStarrySky", "어 스태리 스카이", "어스태리스카이", "어스스"],
       "videoId": "Jm_pNNNVf8k"
     },
     {
@@ -339,7 +339,7 @@
     },
     {
       "title": "지금 만나러 갑니다 (Eclipse)",
-      "answers": ["지금 만나러 갑니다", "지금만나러갑니다"],
+      "answers": ["지금 만나러 갑니다", "지금만나러갑니다", "지만갑"],
       "videoId": "QyH4pyRsBiQ"
     },
     {
@@ -394,7 +394,7 @@
     },
     {
       "title": "Three Of Cups",
-      "answers": ["Three Of Cups", "ThreeOfCups", "쓰리 오브 컵스", "쓰리오브컵스"],
+      "answers": ["Three Of Cups", "ThreeOfCups", "쓰리 오브 컵스", "쓰리오브컵스", "쓰오컵"],
       "videoId": "sEaH-WtdkxQ"
     },
     {
@@ -419,12 +419,12 @@
     },
     {
       "title": "앞면의 뒷면의 뒷면",
-      "answers": ["앞면의 뒷면의 뒷면", "앞면의뒷면의뒷면"],
+      "answers": ["앞면의 뒷면의 뒷면", "앞면의뒷면의뒷면", "앞뒷뒷"],
       "videoId": "tiiu8LhmHcE"
     },
     {
       "title": "우리의 다정한 계절 속에 (Season of Memories)",
-      "answers": ["우리의 다정한 계절 속에", "우리의다정한계절속에"],
+      "answers": ["우리의 다정한 계절 속에", "우리의다정한계절속에", "우다계"],
       "videoId": "900DSvmVv5s"
     },
     {
