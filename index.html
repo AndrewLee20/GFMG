@@ -3,178 +3,238 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="naver-site-verification" content="1ca9e5ca46727ff2723511cdab7746f4b6d9ad69" />
-  <link rel="icon" href="./assets/ui/mini-logo.webp">
   <title>GFRIEND Music Game</title>
 
   <style>
-    :root{
-      --bg:#00ABC0;
-      --line:#111;
-      --card:#F0EEE9;
+      :root{
+        /* Key colors 유지 */
+        --key:#00ABC0;
+        --accent:#5F4B8B;
 
-      --accent:#5F4B8B;
-      --accentText:#fff;
+        /* UI colors */
+        --bg:#f6f8fb;
+        --card:#ffffff;
+        --card2:#ffffffcc;
+        --text:#0f172a;        /* 거의 검정 */
+        --muted:#475569;       /* 서브 텍스트 */
+        --line:rgba(15, 23, 42, 0.10);
 
-      --radius:18px;
-      --w:min(980px, 100%);
-      --pad:clamp(14px, 2.2vw, 28px);
-      --gap:clamp(10px, 1.6vw, 18px);
+        --radius:22px;
+        --w:min(980px, 100%);
+        --pad:clamp(16px, 2.3vw, 28px);
+        --gap:clamp(12px, 1.7vw, 18px);
 
-      --title:clamp(18px, 2.8vw, 30px);
-      --text:clamp(13px, 1.55vw, 16px);
-      --big:clamp(16px, 2.2vw, 22px);
-      --small:clamp(12px, 1.4vw, 14px);
-    }
+        --title:clamp(20px, 2.9vw, 34px);
+        --big:clamp(16px, 2.1vw, 22px);
+        --textS:clamp(13px, 1.55vw, 16px);
+        --small:clamp(12px, 1.4vw, 14px);
 
-    html, body { height:100%; }
-    body{
-      margin:0;
-      font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:#111;
-      display:grid;
-      place-items:center;
-      padding:14px;
-    }
+        --shadow: 0 14px 28px rgba(2, 6, 23, 0.10);
+        --shadow2: 0 8px 16px rgba(2, 6, 23, 0.08);
+      }
 
-    .wrap{
-      width:var(--w);
-      display:grid;
-      gap:var(--gap);
-    }
+      html, body { height:100%; }
+      *{ box-sizing:border-box; }
 
-    .panel{
-      background:var(--card);
-      border:3px solid var(--line);
-      border-radius:var(--radius);
-      padding:var(--pad);
-    }
+      body{
+        margin:0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color:var(--text);
+        background: var(--bg);
+        display:grid;
+        place-items:center;
+        padding:16px;
+      }
 
-    /* 아래 2개 박스도 위 박스와 같은 카드색 강제 적용 */
-    .panel.now,
-    .panel.homeMid,
+      /* ✅ 위에 키컬러 “무드”만 살짝 */
+      body::before{
+        content:"";
+        position:fixed;
+        inset:0;
+        pointer-events:none;
+        background:
+          radial-gradient(900px 500px at 15% -10%,
+            rgba(0,171,192,0.45),
+            rgba(0,171,192,0) 60%),
+          radial-gradient(700px 520px at 95% 15%,
+            rgba(95,75,139,0.30),
+            rgba(95,75,139,0) 55%);
+        z-index:-1;
+      }
 
-    .header{
-      display:grid;
-      place-items:center;
-      gap:10px;
-      text-align:center;
-      padding:clamp(18px, 3vw, 28px);
-    }
+      .wrap{
+        width:var(--w);
+        display:grid;
+        gap:var(--gap);
+      }
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:var(--gap);
-    }
+      /* ✅ 카드 디자인: 두꺼운 검정 테두리 제거 */
+      .panel{
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: var(--pad);
+        box-shadow: var(--shadow2);
+      }
 
-    @media (max-width: 820px){
-      .grid{ grid-template-columns:1fr; }
-    }
+      /* ====== 헤더 ====== */
+      .panel.now{
+        padding: clamp(16px, 2.5vw, 24px);
+      }
 
-    .card{
-      display:flex;
-      flex-direction:column;
-      align-content:stretch;
-      min-height:clamp(170px, 22vw, 210px);
-      padding-bottom:clamp(18px, 2.2vw, 26px);
-    }
+      .homeTitleRow{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+      }
 
-    .cardTitle{
-      font-weight:900;
-      font-size:var(--big);
-      margin-bottom:14px;
-    }
+      .homeLogoInline{
+        height:clamp(28px, 4vw, 42px);
+        width:auto;
+        display:block;
+      }
 
-    .cardDesc{
-      font-weight:800;
-      font-size:var(--text);
-      line-height:1.4;
-    }
+      .homeTitleText{
+        font-size: var(--title);
+        font-weight: 950;
+        letter-spacing: -0.6px;
+        line-height: 1.05;
+      }
 
-    .btn{
-      width:100%;
-      height:clamp(52px, 6.8vw, 62px);
-      border:3px solid var(--line);
-      border-radius:16px;
-      background:var(--accent);
-      color:var(--accentText);
-      font-weight:900;
-      font-size:var(--big);
-      cursor:pointer;
-      margin-top:auto;
-    }
+      .homeSub{
+        margin-top:6px;
+        text-align:center;
+        font-size: var(--textS);
+        font-weight: 750;
+        color: var(--muted);
+      }
 
-    .btn:disabled{
-      opacity:0.45;
-      cursor:not-allowed;
-      background:#b9b3c6;
-      color:#111;
-    }
+      /* ====== 축하 배너 ====== */
+      .panel.homeMid{
+        text-align:center;
+        background: linear-gradient(180deg,
+          rgba(0,171,192,0.08),
+          rgba(95,75,139,0.06));
+      }
 
-    .hint{
-      font-weight:800;
-      font-size:var(--text);
-      text-align:center;
-      opacity:0.95;
-    }
+      .homeTitle{
+        font-size: clamp(16px, 2.2vw, 22px);
+        font-weight: 950;
+        letter-spacing: -0.2px;
+      }
 
-    .homeTitle{
-      font-size:clamp(18px, 2.6vw, 24px);
-      font-weight:900;
-      text-align:center;
-    }
+      .panel.homeMid .homeSub{
+        line-height:1.55;
+      }
 
-    .homeSub{
-      margin-top:6px;
-      font-size:var(--text);
-      font-weight:800;
-      text-align:center;
-    }
+      /* ====== 모드 카드 ====== */
+      .grid{
+        display:grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--gap);
+      }
 
-    .homeTitleRow{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-    }
+      @media (max-width: 820px){
+        .grid{ grid-template-columns:1fr; }
+      }
 
-    .homeLogoInline{
-      height:clamp(26px, 4vw, 42px);
-      width:auto;
-      display:block;
-    }
+      .card{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        min-height:clamp(170px, 22vw, 220px);
+        position:relative;
+        overflow:hidden;
+      }
 
-    .homeTitleText{
-      font-size:clamp(18px, 2.6vw, 30px);
-      font-weight:900;
-      line-height:1;
-    }
+      .cardTitle{
+        font-weight: 950;
+        font-size: var(--big);
+        letter-spacing: -0.2px;
+      }
 
-    .descTitle{
-      font-size:var(--title);
-      font-weight:900;
-      margin-bottom:10px;
-    }
+      .cardDesc{
+        font-weight: 750;
+        font-size: var(--textS);
+        color: var(--muted);
+        line-height: 1.55;
+      }
 
-    .descText{
-      font-size:var(--text);
-      font-weight:800;
-      line-height:1.55;
-      margin-bottom:18px;
-    }
+      /* ✅ 카드 hover: “고급스럽게 뜨는 느낌” */
+      .card{
+        transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+      }
+      .card:hover{
+        transform: translateY(-3px);
+        box-shadow: var(--shadow);
+        border-color: rgba(95,75,139,0.18);
+      }
 
-    .homeFooterText{
-      margin-top:18px;
-      padding-bottom:30px;
-      text-align:center;
-      font-size:var(--small);
-      font-weight:800;
-      opacity:0.9;
-      color:#fff;
-      text-shadow:0 2px 0 rgba(0,0,0,0.25);
-    }
+      /* ====== 버튼 ====== */
+      /* ✅ 버튼은 키컬러를 “딱 여기”에만 강하게 */
+      .btn{
+        width:100%;
+        height:clamp(52px, 6.8vw, 62px);
+        border: 0;
+        border-radius: 16px;
+        cursor:pointer;
+        margin-top:auto;
+
+        background: linear-gradient(180deg, #6d58a0, var(--accent));
+        color:#fff;
+        font-weight: 950;
+        font-size: var(--big);
+
+        box-shadow: 0 14px 26px rgba(95,75,139,0.25);
+        transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
+      }
+
+      .btn:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 18px 34px rgba(95,75,139,0.33);
+        filter: brightness(1.03);
+      }
+      .btn:active{
+        transform: translateY(0) scale(0.99);
+      }
+      .btn:focus-visible{
+        outline: 4px solid rgba(0,171,192,0.35);
+        outline-offset: 3px;
+      }
+
+      /* ====== 설명 영역 ====== */
+      .descTitle{
+        font-size: clamp(16px, 2.2vw, 22px);
+        font-weight: 950;
+        letter-spacing: -0.2px;
+        margin-bottom: 10px;
+      }
+
+      .descText{
+        font-size: var(--textS);
+        font-weight: 750;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 14px;
+      }
+
+      /* ====== Footer ====== */
+      .homeFooterText{
+        margin-top: 14px;
+        padding-bottom: 28px;
+        text-align:center;
+        font-size: var(--small);
+        font-weight: 750;
+        color: rgba(15,23,42,0.60);
+        text-shadow:none;
+      }
+
+      /* ✅ 모션 민감 배려 */
+      @media (prefers-reduced-motion: reduce){
+        .card, .btn{ transition:none; }
+      }
+
   </style>
 </head>
 
@@ -209,8 +269,8 @@
       <div class="panel card">
         <div class="cardTitle">챌린지 모드</div>
         <div class="cardDesc">
-          랭킹전<br />
-          제한 시간 6초, 생명 3개
+          하드 모드<br />
+          제한 시간 10초, 생명 3개
         </div>
         <button class="btn" id="goChallenge">시작</button>
       </div>
@@ -218,7 +278,6 @@
       <div class="panel card">
         <div class="cardTitle">믹스 모드</div>
         <div class="cardDesc">
-          PC 전용 모드 (모바일 불가)<br />
           동시에 재생되는 3개의 노래 제목 맞추기
         </div>
         <button class="btn" id="goMix">시작</button>
@@ -249,7 +308,7 @@
   </div>
 
   <div class="homeFooterText">
-    여자친구 멤버들과 모든 버디에게 바칩니다.<br />
+    여자친구 멤버들과 여자친구를 사랑하는 모든 버디에게 바칩니다.<br />
     응원은! 힘차게! 여!자!친!구!<br />
     문의: gfriendmusicgame@gmail.com
   </div>
@@ -269,9 +328,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
