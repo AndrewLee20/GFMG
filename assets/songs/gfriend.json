@@ -339,7 +339,7 @@
     },
     {
       "title": "지금 만나러 갑니다 (Eclipse)",
-      "answers": ["지금 만나러 갑니다", "지금만나러갑니다", "지만갑"],
+      "answers": ["지금 만나러 갑니다", "지만갑"],
       "videoId": "QyH4pyRsBiQ"
     },
     {
@@ -349,7 +349,7 @@
     },
     {
       "title": "From Me",
-      "answers": ["From Me", "FromMe", "프롬 미", "프롬미"],
+      "answers": ["From Me", "프롬 미"],
       "videoId": "2e-nBLjpKZg"
     },
     {
@@ -359,27 +359,27 @@
     },
     {
       "title": "눈의 시간",
-      "answers": ["눈의 시간", "눈의시간"],
+      "answers": ["눈의 시간"],
       "videoId": "gpBe_EIH8pg"
     },
     {
       "title": "거울의 방",
-      "answers": ["거울의 방", "거울의방"],
+      "answers": ["거울의 방"],
       "videoId": "rFoqjKv6goU"
     },
     {
       "title": "Tarot Cards",
-      "answers": ["Tarot Cards", "타로 카드", "타로카드"],
+      "answers": ["Tarot Cards", "타로 카드"],
       "videoId": "Ef4c9JQumU4"
     },
     {
       "title": "Crème Brûlée",
-      "answers": ["Creme Brulee", "CremeBrulee", "크림 브륄레", "크림브륄레"],
+      "answers": ["Creme Brulee", "크림 브륄레"],
       "videoId": "i35CroMna38"
     },
     {
       "title": "북쪽 계단",
-      "answers": ["북쪽 계단", "북쪽계단"],
+      "answers": ["북쪽 계단"],
       "videoId": "ZXMa0tYEj-c"
     },
     {
@@ -389,42 +389,42 @@
     },
     {
       "title": "Love Spell",
-      "answers": ["Love Spell", "LoveSpell", "러브 스펠", "럽 스펠", "러브스펠", "럽스펠"],
+      "answers": ["Love Spell", "러브 스펠", "럽 스펠"],
       "videoId": "tmN-PvkkSuc"
     },
     {
       "title": "Three Of Cups",
-      "answers": ["Three Of Cups", "ThreeOfCups", "쓰리 오브 컵스", "쓰리오브컵스", "쓰오컵"],
+      "answers": ["Three Of Cups", "쓰리 오브 컵스", "쓰오컵"],
       "videoId": "sEaH-WtdkxQ"
     },
     {
       "title": "GRWM",
-      "answers": ["GRWM", "겟 레디 윗 미", "겟레디윗미"],
+      "answers": ["GRWM", "겟 레디 윗 미"],
       "videoId": "Dqnp7bi21LA"
     },
     {
       "title": "Secret Diary",
-      "answers": ["Secret Diary", "SecretDiary", "시크릿 다이어리", "시크릿다이어리"],
+      "answers": ["Secret Diary", "시크릿 다이어리"],
       "videoId": "h8x47yMQcfE"
     },
     {
       "title": "Better Me",
-      "answers": ["Better Me", "배터 미", "배러 미", "배터미", "배러미"],
+      "answers": ["Better Me", "배터 미", "배러 미", "베터 미", "베러 미", "베럴 미", "베털 미"],
       "videoId": "s2TktuIA9-s"
     },
     {
       "title": "Night Drive",
-      "answers": ["Night Drive", "나이트 드라이브", "나이트드라이브"],
+      "answers": ["Night Drive", "나이트 드라이브"],
       "videoId": "O3tBYGXdPgk"
     },
     {
       "title": "앞면의 뒷면의 뒷면",
-      "answers": ["앞면의 뒷면의 뒷면", "앞면의뒷면의뒷면", "앞뒷뒷"],
+      "answers": ["앞면의 뒷면의 뒷면", "앞뒷뒷"],
       "videoId": "tiiu8LhmHcE"
     },
     {
       "title": "우리의 다정한 계절 속에 (Season of Memories)",
-      "answers": ["우리의 다정한 계절 속에", "우리의다정한계절속에", "우다계"],
+      "answers": ["우리의 다정한 계절 속에", "우다계"],
       "videoId": "900DSvmVv5s"
     },
     {
@@ -449,9 +449,10 @@
     },
     {
       "title": "Wanna Be",
-      "answers": ["Wanna Be", "WannaBe", "워너 비", "워나 비", "워너비", "워나비"],
+      "answers": ["Wanna Be", "워너 비", "워나 비"],
       "videoId": "dw_iBWDQcQk"
     }
   ]
 }
+
 
