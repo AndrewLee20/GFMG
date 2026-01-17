@@ -240,7 +240,31 @@
       line-height:1.05;
       box-shadow: 0 14px 26px rgba(2,6,23,0.10);
       transition: transform 140ms ease, box-shadow 140ms ease;
+      position:relative;
+      overflow:hidden;
     }
+
+    /* ✅ 버튼 구분용 상단 컬러바 */
+    #revealBtn::before,
+    #replayBtn::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height:6px;            /* 띠 두께 */
+      border-radius:20px 20px 0 0;  /* 위쪽만 라운드 */
+    }
+    
+    /* 정답 공개 = 빨강 느낌 */
+    #revealBtn::before{
+      background: rgba(0,171,192,0.85);
+    }
+    
+    #replayBtn::before{
+      background: rgba(0,171,192,0.85);
+    }
+
   
     .bigBtn:hover{
       transform: translateY(-2px);
@@ -1728,6 +1752,7 @@
   </script>
 </body>
 </html>
+
 
 
 
