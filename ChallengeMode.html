@@ -8,79 +8,107 @@
 
   <style>
     :root{
-      --bg:#00ABC0;
-      --line:#111;
-      --card:#F0EEE9;
-
-      --accentBtn:#5F4B8B;
-      --accentBtnText:#fff;
-
-      --ok:#1f7a2e;
-      --bad:#b3261e;
-
-      --radius:18px;
+      /* ✅ 키컬러 */
+      --key:#00ABC0;
+      --accent:#5F4B8B;
+  
+      /* ✅ 베이스 톤 */
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:rgba(15,23,42,0.10);
+  
+      --ok:#16a34a;
+      --bad:#dc2626;
+  
+      --radius:22px;
       --w:min(980px, 100%);
-      --pad:clamp(14px, 2.2vw, 28px);
-      --gap:clamp(10px, 1.6vw, 18px);
-
+      --pad:clamp(16px, 2.3vw, 28px);
+      --gap:clamp(12px, 1.7vw, 18px);
+  
       --title:clamp(18px, 2.4vw, 26px);
-      --text:clamp(13px, 1.55vw, 16px);
+      --textS:clamp(13px, 1.55vw, 16px);
       --big:clamp(16px, 2.2vw, 22px);
       --small:clamp(12px, 1.4vw, 14px);
-      --inputH:clamp(34px, 4.2vw, 44px);
+      --inputH:clamp(40px, 4.4vw, 48px);
+  
+      --shadow: 0 14px 28px rgba(2,6,23,0.10);
+      --shadow2: 0 8px 16px rgba(2,6,23,0.08);
     }
-
+  
     html, body { height:100%; }
+    *{ box-sizing:border-box; }
+  
     body{
       margin:0;
       font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:var(--bg);
-      color:#111;
+      color:var(--text);
       display:grid;
       place-items:center;
-      padding:14px;
+      padding:16px;
     }
-
+  
+    /* ✅ 키컬러는 배경 단색 대신 무드 조명 */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(900px 520px at 12% -10%,
+          rgba(0,171,192,0.45),
+          rgba(0,171,192,0) 60%),
+        radial-gradient(700px 520px at 92% 8%,
+          rgba(95,75,139,0.28),
+          rgba(95,75,139,0) 55%);
+      z-index:-1;
+    }
+  
     .wrap{
       width:var(--w);
       display:grid;
       gap:var(--gap);
     }
-
+  
     .panel{
       background:var(--card);
-      border:3px solid var(--line);
+      border:1px solid var(--line);
       border-radius:var(--radius);
       padding:var(--pad);
+      box-shadow:var(--shadow2);
     }
-
+  
     .now{
       display:grid;
       place-items:center;
-      font-weight:900;
+      font-weight:950;
       font-size:var(--title);
       min-height:clamp(56px, 8vw, 86px);
-      letter-spacing:0.2px;
+      letter-spacing:-0.2px;
+      text-align:center;
     }
-
+  
     .main{
       display:grid;
       gap:clamp(12px, 2vw, 18px);
       place-items:center;
       min-height:clamp(360px, 55vw, 560px);
     }
-
+  
     .row{
       display:flex;
       align-items:center;
       justify-content:center;
       gap:10px;
       flex-wrap:wrap;
-      font-size:var(--text);
+      font-size:var(--textS);
       text-align:center;
-      font-weight:900;
+      font-weight:950;
+      color:var(--muted);
     }
-
+  
     .livesRow{
       display:flex;
       align-items:center;
@@ -89,121 +117,178 @@
       font-size:clamp(22px, 3vw, 28px);
       user-select:none;
     }
-
-    .heartAlive{ color:#d11212; }
-    .heartDead{ color:#111; }
-
+  
     .timeRow{
       display:flex;
       align-items:center;
       justify-content:center;
       gap:8px;
       font-size:var(--big);
-      font-weight:900;
+      font-weight:950;
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:16px;
+      border:1px dashed rgba(15,23,42,0.18);
+      background:#fff;
+      width:min(320px, 92%);
+      text-align:center;
     }
-
+  
     .answerArea{
       display:grid;
       place-items:center;
       gap:10px;
-      width:min(520px, 92%);
+      width:min(560px, 92%);
     }
-
+  
     .answerInput{
       width:100%;
       height:var(--inputH);
-      border:2px solid #777;
-      border-radius:6px;
-      font-size:var(--text);
-      padding:0 12px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      font-size:var(--textS);
+      padding:0 14px;
       outline:none;
       text-align:center;
       background:#fff;
-      color:#111;
+      color:var(--text);
+      font-weight:850;
+      transition: box-shadow 140ms ease, border-color 140ms ease;
     }
-
+  
+    .answerInput::placeholder{
+      color:#94a3b8;
+      font-weight:800;
+    }
+  
+    .answerInput:focus{
+      border-color: rgba(0,171,192,0.45);
+      box-shadow: 0 0 0 4px rgba(0,171,192,0.18);
+    }
+  
     .enterBtn{
-      width:clamp(90px, 16vw, 120px);
-      height:clamp(28px, 4vw, 36px);
-      border:2px solid #777;
-      border-radius:6px;
-      background:#efefef;
-      font-weight:900;
+      width:min(220px, 55%);
+      height:clamp(40px, 5vw, 46px);
+      border:0;
+      border-radius:16px;
+      background: linear-gradient(180deg, #6d58a0, var(--accent));
+      color:#fff;
+      font-weight:950;
       cursor:pointer;
-      font-size:var(--small);
+      font-size:var(--textS);
+      box-shadow: 0 16px 30px rgba(95,75,139,0.25);
+      transition: transform 140ms ease, box-shadow 140ms ease;
     }
-
+  
+    .enterBtn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 20px 36px rgba(95,75,139,0.33);
+    }
+  
+    .enterBtn:active{
+      transform: translateY(0) scale(0.99);
+    }
+  
     .enterBtn:disabled,
     .answerInput:disabled{
       opacity:0.55;
       cursor:not-allowed;
     }
-
+  
     .statRow{
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:14px;
+      gap:12px;
       flex-wrap:wrap;
-      font-size:var(--text);
-      font-weight:900;
+      font-size:var(--textS);
+      font-weight:950;
+      color:var(--text);
     }
-
+  
+    .statRow > div{
+      padding:10px 14px;
+      border-radius:16px;
+      border:1px dashed rgba(15,23,42,0.18);
+      background:#fff;
+      min-width:140px;
+      text-align:center;
+    }
+  
     .bigBtns{
       display:flex;
       gap:clamp(10px, 2vw, 16px);
       justify-content:center;
       flex-wrap:wrap;
     }
-
+  
     .bigBtn{
-      width:clamp(140px, 26vw, 190px);
-      height:clamp(86px, 12vw, 112px);
-      border:3px solid var(--line);
+      width:clamp(160px, 28vw, 220px);
+      height:clamp(84px, 12vw, 112px);
+      border:0;
       border-radius:20px;
-      background:#ececec;
-      color:#111;
-      font-weight:900;
+      background: linear-gradient(180deg, #ffffff, #f3f4f6);
+      color:var(--text);
+      font-weight:950;
       font-size:var(--big);
       cursor:pointer;
       display:grid;
       place-items:center;
       line-height:1.05;
+      box-shadow: 0 14px 26px rgba(2,6,23,0.10);
+      transition: transform 140ms ease, box-shadow 140ms ease;
     }
-
+  
+    .bigBtn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 34px rgba(2,6,23,0.14);
+    }
+  
     .bigBtn:disabled{
-      opacity:0.45;
+      opacity:0.50;
       cursor:not-allowed;
+      box-shadow:none;
     }
-
+  
     .mvArea{
       display:grid;
       place-items:center;
       gap:8px;
     }
-
+  
     .mvLabel{
-      font-size:var(--text);
-      font-weight:900;
+      font-size:var(--textS);
+      font-weight:950;
+      color:var(--muted);
     }
-
+  
+    /* ✅ 요청사항: MV 버튼은 #00ABC0 */
     .mvBtn{
-      width:clamp(46px, 7vw, 60px);
-      height:clamp(28px, 4.4vw, 36px);
-      border:2px solid #2b2b2b;
-      border-radius:6px;
-      background:var(--accentBtn);
-      color:var(--accentBtnText);
-      font-weight:900;
+      width:clamp(64px, 9vw, 78px);
+      height:clamp(34px, 5vw, 42px);
+      border:0;
+      border-radius:16px;
+      background: linear-gradient(180deg, #27c6d8, var(--key));
+      color:#fff;
+      font-weight:950;
       cursor:pointer;
       font-size:var(--small);
+      box-shadow: 0 16px 30px rgba(0,171,192,0.25);
+      transition: transform 140ms ease, box-shadow 140ms ease;
     }
-
+  
+    .mvBtn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 20px 36px rgba(0,171,192,0.33);
+    }
+  
     .mvBtn.off{
-      background:#e6e6e6;
-      color:#111;
+      background:#e5e7eb;
+      color:var(--text);
+      box-shadow:none;
+      transform:none;
     }
-
+  
     .footerRow{
       display:flex;
       align-items:center;
@@ -212,37 +297,66 @@
       flex-wrap:wrap;
       width:100%;
     }
-
+  
     .nextBtn{
-      width:clamp(160px, 26vw, 210px);
+      width:clamp(170px, 28vw, 240px);
       height:clamp(46px, 6.2vw, 56px);
-      border:3px solid var(--line);
-      border-radius:14px;
-      background:var(--accentBtn);
-      color:var(--accentBtnText);
-      font-weight:900;
-      font-size:var(--text);
+      border:0;
+      border-radius:18px;
+      background:
+        radial-gradient(120% 140% at 50% 0%,
+          rgba(255,255,255,0.25),
+          rgba(255,255,255,0) 55%),
+        linear-gradient(180deg, #6d58a0, var(--accent));
+      color:#fff;
+      font-weight:950;
+      font-size:var(--textS);
       cursor:pointer;
+      box-shadow: 0 16px 30px rgba(95,75,139,0.28);
+      transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
     }
-
+  
+    .nextBtn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 20px 36px rgba(95,75,139,0.35);
+      filter: brightness(1.03);
+    }
+  
     .nextBtn:disabled{
-      opacity:0.45;
+      opacity:0.50;
       cursor:not-allowed;
+      box-shadow:none;
     }
-
+  
     .msg{
       width:min(720px, 94%);
       text-align:center;
-      font-size:var(--text);
-      font-weight:900;
+      font-size:var(--textS);
+      font-weight:950;
       min-height:24px;
       white-space:pre-line;
+      padding:10px 12px;
+      border-radius:16px;
+      border:1px dashed rgba(15,23,42,0.18);
+      background:#fff;
+      color:var(--text);
     }
-
-    .msg.ok{ color:var(--ok); }
-    .msg.bad{ color:var(--bad); }
-    .msg.info{ color:#111; }
-
+  
+    .msg.ok{
+      border-color: rgba(22,163,74,0.45);
+      background: rgba(22,163,74,0.08);
+      color: var(--ok);
+    }
+  
+    .msg.bad{
+      border-color: rgba(220,38,38,0.45);
+      background: rgba(220,38,38,0.08);
+      color: var(--bad);
+    }
+  
+    .msg.info{ color:var(--text); }
+  
+    /* 유튜브 숨김/표시 */
     .playerAudioOnly{
       position:absolute;
       left:-9999px;
@@ -253,38 +367,39 @@
       pointer-events:none;
       overflow:hidden;
     }
-
+  
     .playerShow{
       position:static;
-      left:auto;
-      top:auto;
       width:min(760px, 96%);
-      border:2px dashed rgba(0,0,0,0.22);
-      border-radius:14px;
+      border:1px solid rgba(15,23,42,0.14);
+      border-radius:18px;
       background:#000;
       opacity:1;
       pointer-events:auto;
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
-
+  
     .ratio{
       position:relative;
       width:100%;
       aspect-ratio:16/9;
     }
-
+  
     #player{
       position:absolute;
       inset:0;
       width:100%;
       height:100%;
     }
-
+  
     .screen{ display:none; width:100%; }
     .screen.on{
       display:grid;
       gap:var(--gap);
     }
-
+  
+    /* 시작 화면 */
     .startBox{
       display:grid;
       gap:16px;
@@ -292,72 +407,106 @@
       min-height:clamp(320px, 40vw, 420px);
       text-align:center;
     }
-
+  
     .bigText{
       font-size:clamp(18px, 2.6vw, 28px);
-      font-weight:900;
+      font-weight:950;
+      letter-spacing:-0.3px;
     }
-
+  
     .smallText{
-      font-size:var(--text);
-      font-weight:900;
+      font-size:var(--textS);
+      font-weight:850;
       text-align:center;
+      line-height:1.55;
+      color:var(--muted);
     }
-
+  
     .nickInput{
       width:min(420px, 92%);
       height:var(--inputH);
-      border:2px solid #777;
-      border-radius:8px;
-      font-size:var(--text);
-      padding:0 12px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      font-size:var(--textS);
+      padding:0 14px;
       outline:none;
       text-align:center;
       background:#fff;
-      color:#111;
-      font-weight:800;
+      color:var(--text);
+      font-weight:850;
+      transition: box-shadow 140ms ease, border-color 140ms ease;
     }
-
+  
+    .nickInput:focus{
+      border-color: rgba(0,171,192,0.45);
+      box-shadow: 0 0 0 4px rgba(0,171,192,0.18);
+    }
+  
     .startBtn{
-      width:min(260px, 78%);
+      width:min(280px, 82%);
       height:clamp(54px, 6.8vw, 62px);
-      border:3px solid var(--line);
-      border-radius:16px;
-      background:var(--accentBtn);
-      color:var(--accentBtnText);
-      font-weight:900;
+      border:0;
+      border-radius:18px;
+      background: linear-gradient(180deg, #6d58a0, var(--accent));
+      color:#fff;
+      font-weight:950;
       font-size:clamp(16px, 2vw, 18px);
       cursor:pointer;
+      box-shadow: 0 16px 30px rgba(95,75,139,0.28);
+      transition: transform 140ms ease, box-shadow 140ms ease;
     }
-
+  
+    .startBtn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 20px 36px rgba(95,75,139,0.35);
+    }
+  
     .startBtn:disabled{
-      opacity:0.45;
+      opacity:0.55;
       cursor:not-allowed;
+      box-shadow:none;
     }
-
+  
+    /* 메인으로(스타트 화면) 라이트 스타일 */
+    #homeBtn.startBtn{
+      background:#fff;
+      color:var(--text);
+      border:1px solid var(--line);
+      box-shadow: 0 10px 18px rgba(2,6,23,0.08);
+    }
+  
     .groupPick{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
       justify-content:center;
     }
-
+  
     .groupBtn{
-      border:3px solid var(--line);
-      border-radius:14px;
-      padding:10px 14px;
-      font-weight:900;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px 14px;
+      font-weight:950;
       cursor:pointer;
-      background:#ececec;
-      color:#111;
-      font-size:var(--text);
+      background:#fff;
+      color:var(--text);
+      font-size:var(--textS);
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+      box-shadow: 0 10px 18px rgba(2,6,23,0.06);
     }
-
+  
+    .groupBtn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 22px rgba(2,6,23,0.10);
+    }
+  
     .groupBtn.on{
-      background:var(--accentBtn);
-      color:var(--accentBtnText);
+      background: rgba(0,171,192,0.10);
+      border-color: rgba(0,171,192,0.45);
+      box-shadow: 0 14px 22px rgba(0,171,192,0.10);
     }
-
+  
+    /* ✅ 게임오버 + 랭킹 */
     .gameOverBox{
       display:grid;
       gap:14px;
@@ -365,66 +514,74 @@
       min-height:clamp(320px, 40vw, 420px);
       text-align:center;
     }
-
+  
     .rankPanel{
-      width:min(520px, 92%);
-      border:3px solid var(--line);
-      border-radius:16px;
+      width:min(560px, 92%);
+      border:1px solid var(--line);
+      border-radius:18px;
       background:#fff;
-      padding:14px 14px;
+      padding:14px;
       text-align:left;
+      box-shadow: 0 12px 22px rgba(2,6,23,0.08);
     }
-    
+  
     .rankTitle{
-      font-size:var(--text);
-      font-weight:900;
+      font-size:var(--textS);
+      font-weight:950;
       margin-bottom:10px;
+      color:var(--text);
     }
-    
+  
     .rankList{
       display:grid;
-      gap:6px;
-      font-size:var(--text);
+      gap:8px;
+      font-size:var(--textS);
       font-weight:900;
       white-space:pre-line;
+      color:var(--text);
     }
-    
+  
     .rankLine{
       display:flex;
       gap:10px;
       align-items:center;
       justify-content:space-between;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px dashed rgba(15,23,42,0.16);
+      background:#fff;
     }
-    
+  
     .rankLeft{
       display:flex;
       gap:10px;
       align-items:center;
+      min-width:0;
     }
-    
+  
     .rankNum{
-      width:44px;
+      width:56px;
       text-align:right;
-      font-weight:900;
+      font-weight:950;
+      color:var(--muted);
+      flex:0 0 auto;
     }
-    
+  
     .rankName{
-      font-weight:900;
+      font-weight:950;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      max-width:240px;
     }
-    
+  
     .rankRight{
-      font-weight:900;
-      color:#111;
-      opacity:0.85;
+      font-weight:950;
+      color:var(--muted);
+      opacity:0.95;
+      flex:0 0 auto;
     }
-    
-    .rankMe{
-      background:var(--card);
-      border:2px solid var(--line);
-      border-radius:12px;
-      padding:8px 10px;
-    }
-        
+  
     @media (max-width: 520px){
       .groupPick{
         display:grid;
@@ -433,15 +590,24 @@
         width:min(360px, 92%);
         margin:0 auto;
       }
-
+  
       .groupBtn{
         width:100%;
         padding:12px 0;
         text-align:center;
-        border-radius:14px;
+        border-radius:16px;
+      }
+  
+      .rankName{ max-width:140px; }
+    }
+  
+    @media (prefers-reduced-motion: reduce){
+      .startBtn, .enterBtn, .groupBtn, .bigBtn, .nextBtn, .mvBtn{
+        transition:none;
       }
     }
   </style>
+
 </head>
 
 <body>
@@ -1559,6 +1725,7 @@
   </script>
 </body>
 </html>
+
 
 
 
